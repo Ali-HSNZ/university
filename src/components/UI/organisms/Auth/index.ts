@@ -1,4 +1,3 @@
-import OtpForm from './OtpForm/OtpForm'
-import RootAuthForm from './RootAuthForm/RootAuthForm'
+import AuthForm from './Form/AuthForm'
 
-export { OtpForm, RootAuthForm }
+export { AuthForm }
