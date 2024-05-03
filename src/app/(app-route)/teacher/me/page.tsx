@@ -1,7 +1,7 @@
-import React from 'react'
+import { TeacherMeTemplate } from '@templates/TeacherMeTemplate'
 
 const page = () => {
-    return <div>پروفایل کاربری</div>
+    return <TeacherMeTemplate />
 }
 
 export default page

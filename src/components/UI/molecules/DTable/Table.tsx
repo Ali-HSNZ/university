@@ -17,7 +17,7 @@ const DTable: FC<ITableProps> = ({ data, minWidth = undefined, maxHeight = undef
                                 return (
                                     <Table.Th
                                         classNames={{
-                                            th: 'text-xs leading-5 md:text-sm font-medium whitespace-nowrap',
+                                            th: 'text-xs p-4 leading-5 md:text-sm font-medium whitespace-nowrap',
                                         }}
                                         key={index}
                                     >
@@ -32,7 +32,7 @@ const DTable: FC<ITableProps> = ({ data, minWidth = undefined, maxHeight = undef
                     {data.getRowModel().rows.map((row: TCriticalAny, index: number) => (
                         <Table.Tr py={20} classNames={{ tr: 'border-[#F0F0F0]' }} key={index}>
                             {row.getVisibleCells().map((cell: TCriticalAny, index: number) => (
-                                <Table.Td classNames={{ td: 'text-xs leading-5 md:text-sm py-2.5' }} key={index}>
+                                <Table.Td classNames={{ td: 'text-xs leading-5 md:text-sm p-3.5' }} key={index}>
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                 </Table.Td>
                             ))}

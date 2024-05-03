@@ -13,13 +13,13 @@ const DTable: FC<ITableProps> = ({ table }) => {
         <>
             <div className='hidden md:block w-full overflow-auto max-h-[400px]'>
                 <table className='w-full relative border-separate  border-spacing-y-[7px] '>
-                    <thead className='sticky top-0 right-0 w-full'>
+                    <thead className='sticky top-0 right-0 w-full p-6'>
                         {table.getHeaderGroups().map((headerGroup: HeaderGroup<TableData>) => (
                             <tr key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => (
                                     <th
                                         key={header.id}
-                                        className='t-body1Strong text-nowrap text-typography bg-general-brandBackground py-3 px-5 first:rounded-r-lg first:text-right last:rounded-l-lg last:border-none border-l border-light-blue first:w-16'
+                                        className='t-body1Strong text-nowrap text-typography bg-general-brandBackground   first:rounded-r-lg first:text-right last:rounded-l-lg last:border-none border-l border-light-blue first:w-16'
                                     >
                                         {header.isPlaceholder
                                             ? null
