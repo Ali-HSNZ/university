@@ -1,0 +1,7 @@
+.ep-arrow.rmdp-ep-arrow.rmdp-ep-shadow {
+    z-index: 201 !important;
+}
+
+.ep-arrow.rmdp-ep-arrow.rmdp-ep-shadow + div {
+    z-index: 200 !important;
+}

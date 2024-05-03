@@ -1,0 +1,125 @@
+#DTabSelectCollapse .rmdp-wrapper {
+    margin: 0 20px 0 20px;
+    width: 100%;
+    max-width: 400px;
+}
+#DTabSelectCollapse .rmdp-top-class {
+    width: 100%;
+}
+#DTabSelectCollapse .rmdp-calendar {
+    width: 100%;
+}
+#DTabSelectCollapse .rmdp-day-picker {
+    width: 100%;
+}
+#DTabSelectCollapse .rmdp-day-picker div {
+    width: 100%;
+}
+
+/* datePickerCustom */
+.datePickerCustom .rmdp-day .rmdp-week {
+    margin: 4px;
+}
+
+.datePickerCustom .rmdp-day-picker .rmdp-week {
+    margin: 4px;
+}
+
+/* single calender */
+.datePickerCustom .single .sd {
+    color: black;
+    background-color: transparent;
+    box-shadow: none;
+}
+.datePickerCustom .single .sd:hover {
+    color: black;
+    background-color: transparent;
+    box-shadow: none;
+}
+.datePickerCustom .single .rmdp-selected .sd {
+    color: black;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.datePickerCustom .single .rmdp-day {
+    border-radius: 7px;
+    border: 2.5px solid transparent;
+}
+.datePickerCustom .single .rmdp-day.rmdp-selected {
+    border: 2.5px solid #1890ff;
+    background-color: #1890ff1a;
+}
+.datePickerCustom .single .rmdp-day.rmdp-selected .sd {
+    background-color: transparent;
+}
+
+/* range calender */
+.datePickerCustom .range .rmdp-range .sd {
+    background-color: transparent;
+    color: black;
+}
+
+.datePickerCustom .range .sd:hover {
+    background-color: transparent;
+    color: unset;
+}
+
+.datePickerCustom .rmdp-today .sd {
+    background-color: transparent;
+    border-radius: 7px;
+    border: 2.5px #7fdbff solid;
+    color: unset;
+}
+.datePickerCustom .rmdp-today .sd:hover {
+    color: unset;
+}
+.datePickerCustom .range .rmdp-range.start.end {
+    border-radius: 7px 0 0 7px;
+    background-color: #1890ff1a;
+    box-shadow: none;
+    color: black;
+    border-top: 2.5px solid #1890ff;
+    border-bottom: 2.5px solid #1890ff;
+}
+.datePickerCustom .range .rmdp-day.rmdp-range.start {
+    border-radius: 0 7px 7px 0;
+    border-left: 0;
+    border-right: 2.5px solid #1890ff;
+    border-top: 2.5px solid #1890ff;
+}
+.datePickerCustom .range .rmdp-day.rmdp-range.end {
+    border-radius: 7px 0 0 7px !important;
+    border-right: 0;
+    border-left: 2.5px solid #1890ff;
+    border-top: 2.5px solid #1890ff;
+}
+.datePickerCustom .range .rmdp-day.rmdp-range {
+    border-radius: 0;
+    background-color: #1890ff1a;
+    box-shadow: none;
+    color: black;
+    border-top: 2.5px solid #1890ff;
+    border-bottom: 2.5px solid #1890ff;
+}
+
+/*  */
+.datePickerCustom .range .rmdp-day {
+    border-top: 2.5px solid;
+    border-bottom: 2.5px solid;
+    /* border-left: 2.5px solid; */
+    border-color: transparent;
+}
+.datePickerCustom .rmdp-day {
+    width: 35px;
+    height: 35px;
+}
+.datePickerCustom .range .rmdp-range-hover {
+    background-color: #1890ff1a;
+    color: unset;
+    border-color: #1890ff;
+}
+.datePickerCustom .range .rmdp-range-hover.end {
+    border-radius: 7px 0 0 7px !important;
+    border-left: 2.5px solid #1890ff;
+}

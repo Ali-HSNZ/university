@@ -1,0 +1,72 @@
+{
+    // vscode general
+    "scm.diffDecorationsIgnoreTrimWhitespace": "true",
+    "files.trimTrailingWhitespace": true,
+
+    // eslint extension options
+    "eslint.enable": true,
+    "eslint.validate": ["javascript", "typescript", "javascriptreact", "typescriptreact"],
+
+    // prettier extension setting
+    "editor.formatOnSave": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "prettier.configPath": ".prettierrc.json",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+
+    // json formatter
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    "explorer.compactFolders": false,
+
+    "cSpell.language": "en,fa",
+
+    "cSpell.words": [
+        "Bazsazi",
+        "bonyad",
+        "Combobox",
+        "commitlint",
+        "CONEX",
+        "Dorapi",
+        "drilldown",
+        "Fanni",
+        "finalbuild",
+        "Hamberger",
+        "highmaps",
+        "iconsax",
+        "jalaali",
+        "Landuse",
+        "mantine",
+        "Mazandaran",
+        "Nezam",
+        "niro",
+        "nprogress",
+        "rmdp",
+        "svgr",
+        "tabler",
+        "tailwindcss",
+        "tanstack",
+        "toastify",
+        "treemap",
+        "vezarat",
+        "Yekan",
+        "Zustand"
+    ]
+}

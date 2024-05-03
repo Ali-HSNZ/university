@@ -1,0 +1,21 @@
+.highcharts-gauge-series .highcharts-data-label {
+    @apply !opacity-100;
+}
+
+/* exporting panel item */
+
+.highcharts-menu .highcharts-menu-item {
+    @apply text-right;
+}
+
+.highcharts-menu {
+    @apply !shadow-md;
+}
+
+.highcharts-contextbutton .highcharts-button-box {
+    @apply !fill-white;
+}
+
+.highcharts-contextmenu {
+    @apply !p-4 !-left-2.5 !top-10;
+}

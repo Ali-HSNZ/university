@@ -1,0 +1,5 @@
+@import 'react-toastify/dist/ReactToastify.css';
+
+.Toastify__toast-body {
+    @apply items-start text-right gap-x-3 text-[13px] font-iran-yekan;
+}

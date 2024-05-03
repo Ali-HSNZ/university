@@ -1,0 +1,43 @@
+import jsPDF from 'jspdf'
+
+import { type TCriticalAny } from '@core/types/critical-any'
+
+import 'jspdf-autotable'
+
+import type IExportToPDFProps from './types/type'
+
+const exportToPDF = ({ headers, tableData }: IExportToPDFProps) => {
+    const doc: TCriticalAny = new jsPDF({ putOnlyUsedFonts: true })
+
+    const baseUrl =
+        process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://front.bonyad360.dornicaapi.ir'
+
+    // Add the font
+    doc.addFont(`${baseUrl}/fonts/IRANYekanRegularFaNum.ttf`, 'iranYekanFont', 'normal')
+
+    // Set the font for all text
+    doc.setFont('iranYekanFont')
+
+    const content = {
+        dir: 'rtl',
+        theme: 'grid',
+        head: [headers],
+        headStyles: {
+            cellPadding: 4,
+            fillColor: [0, 45, 128], // example header background color
+            halign: 'right', // horizontal alignment: 'left', 'center', 'right', 'justify'
+            valign: 'middle', // vertical alignment: 'top', 'middle', 'bottom'
+        },
+        bodyStyles: {
+            cellPadding: 2.5,
+            halign: 'right', // horizontal alignment: 'left', 'center', 'right', 'justify'
+            valign: 'middle', // vertical alignment: 'top', 'middle', 'bottom'
+        },
+        body: tableData,
+        styles: { font: 'iranYekanFont' },
+    }
+    doc.autoTable(content)
+    doc.save('report.pdf')
+}
+
+export default exportToPDF

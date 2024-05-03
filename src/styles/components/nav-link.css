@@ -1,0 +1,31 @@
+.mantine-NavLink-root + div > div {
+    @apply bg-light-blue-100 p-2 rounded-lg;
+}
+
+.mantine-NavLink-root + div {
+    @apply w-full;
+}
+
+.mantine-NavLink-children a {
+    @apply text-typography-350;
+}
+
+.mantine-NavLink-root[data-expanded='true'] {
+    @apply !bg-general-brandBackground hover:!bg-general-brandBackground !text-general-brand !duration-300;
+}
+
+.mantine-NavLink-root[data-expanded='true'] .mantine-NavLink-section {
+    @apply !text-general-brand;
+}
+
+.mantine-NavLink-root[data-active='true'] {
+    @apply !text-general-brand !bg-general-brandBackground hover:!bg-general-brandBackground;
+}
+
+.mantine-NavLink-root[data-active='true'] .mantine-NavLink-section {
+    @apply !text-general-brand;
+}
+
+.mantine-NavLink-root .mantine-NavLink-section[data-rotate='true'] {
+    @apply -rotate-90;
+}
