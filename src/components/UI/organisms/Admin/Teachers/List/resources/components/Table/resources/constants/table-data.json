@@ -2,15 +2,16 @@
     {
         "first_name": "علی",
         "last_name": "امیدی",
-        "gender": "مرد",
+        "class_count": "2",
         "age": "18",
         "code": "35165165",
-        "test_date": "1403/12/11"
+        "test_date": "1403/12/11",
+        "status": true
     },
     {
         "first_name": "رضا",
         "last_name": "رضوی",
-        "gender": "مرد",
+        "class_count": "7",
         "age": "24",
         "code": "21658484",
         "test_date": "1403/05/24"
@@ -18,7 +19,7 @@
     {
         "first_name": "مریم",
         "last_name": "نجفی",
-        "gender": "زن",
+        "class_count": "1",
         "age": "17",
         "code": "98482155",
         "test_date": "1403/01/05"

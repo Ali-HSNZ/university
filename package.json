@@ -23,6 +23,7 @@
         "@mantine/core": "^7.3.1",
         "@mantine/dropzone": "^7.9.0",
         "@mantine/hooks": "^7.3.1",
+        "@mantine/modals": "^7.9.0",
         "@tabler/icons-react": "^2.39.0",
         "@tanstack/react-query": "^5.8.1",
         "@tanstack/react-table": "^8.11.2",

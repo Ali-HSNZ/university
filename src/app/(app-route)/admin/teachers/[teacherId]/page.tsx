@@ -1,5 +1,7 @@
+import { AdminTeacherProfile } from '@templates/AdminTeacherProfile'
+
 const page = () => {
-    return <p>پروفایل استاد</p>
+    return <AdminTeacherProfile />
 }
 
 export default page
