@@ -47,7 +47,7 @@ const mantineTheme = createTheme({
     },
     primaryColor: 'blue',
     fontFamily: 'unset',
-    primaryShade: { light: 5, dark: 5 },
+    primaryShade: { light: 4, dark: 5 },
 })
 
 export default mantineTheme

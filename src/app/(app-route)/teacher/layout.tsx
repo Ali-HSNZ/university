@@ -2,8 +2,8 @@ import { type FC, type PropsWithChildren } from 'react'
 
 import { TeacherLayout } from '@partials/layouts/TeacherLayout'
 
-const layout: FC<PropsWithChildren> = ({ children }) => {
+const AppLayout: FC<PropsWithChildren> = ({ children }) => {
     return <TeacherLayout>{children}</TeacherLayout>
 }
 
-export default layout
+export default AppLayout

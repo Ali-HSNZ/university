@@ -1,11 +1,7 @@
 import { TeacherForm } from '@organisms/Teacher'
 
 const TeacherMeTemplate = () => {
-    return (
-        <section>
-            <TeacherForm />
-        </section>
-    )
+    return <TeacherForm />
 }
 
 export default TeacherMeTemplate

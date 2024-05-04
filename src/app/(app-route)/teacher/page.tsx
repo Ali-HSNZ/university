@@ -4,7 +4,7 @@ import { type Metadata } from 'next'
 import { TeacherTemplate } from '@templates/TeackerTemplate'
 
 export const metadata: Metadata = {
-    title: 'سامانه دانشجویی | پنل استاد',
+    title: 'سامانه دانشجویی | لیست دروس',
 }
 
 const page = () => {
