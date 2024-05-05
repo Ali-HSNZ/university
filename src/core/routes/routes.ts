@@ -2,7 +2,9 @@ const Routes = {
     Root: '/',
     AdminPanel: '/admin/',
     AdminManageTeachersList: 'teachers/',
-    AdminTeacherProfile: (code: number) => Routes.AdminPanel + Routes.AdminManageTeachersList + code,
+    AdminTeacherProfile: (teacherCode: number) => Routes.AdminPanel + Routes.AdminManageTeachersList + teacherCode,
+    AdminTeacherLessons: (teacherCode: number) =>
+        Routes.AdminPanel + Routes.AdminManageTeachersList + teacherCode + '/lessons',
 }
 
 export default Routes

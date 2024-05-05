@@ -18,9 +18,6 @@ const Table = () => {
         columnHelper.accessor('title', {
             header: 'عنوان',
         }),
-        columnHelper.accessor('unit', {
-            header: 'واحد',
-        }),
         columnHelper.accessor('start_time', {
             header: 'ساعت شروع کلاس',
         }),
@@ -33,6 +30,9 @@ const Table = () => {
         columnHelper.accessor('test_date', {
             header: 'تاریخ  آزمون',
         }),
+        columnHelper.accessor('unit', {
+            header: 'واحد',
+        }),
     ]
 
     const table = useReactTable({
@@ -41,7 +41,7 @@ const Table = () => {
         getCoreRowModel: getCoreRowModel(),
     })
 
-    return <DTable data={table} minWidth={750} />
+    return <DTable data={table} minWidth={800} />
 }
 
 export default Table

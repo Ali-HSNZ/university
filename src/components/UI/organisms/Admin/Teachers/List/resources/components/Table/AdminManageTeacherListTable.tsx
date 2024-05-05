@@ -86,6 +86,7 @@ const Table = () => {
                             <Menu.Item
                                 rightSection={<IconChevronLeft size={19} />}
                                 leftSection={<IconListCheck size={19} />}
+                                onClick={() => push(Routes.AdminTeacherLessons(cell.row.original.code))}
                             >
                                 لیست کلاس‌ها
                             </Menu.Item>
