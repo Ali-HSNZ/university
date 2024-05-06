@@ -1,4 +1,4 @@
-type AdminTeacherLessons = {
+type AdminClassesListTable = {
     index: number
     title: string
     start_time: string
@@ -10,4 +10,4 @@ type AdminTeacherLessons = {
     operators: unknown
 }
 
-export default AdminTeacherLessons
+export default AdminClassesListTable

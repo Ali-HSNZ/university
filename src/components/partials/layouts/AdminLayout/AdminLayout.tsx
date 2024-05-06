@@ -59,7 +59,7 @@ const AdminLayout: FC<PropsWithChildren> = ({ children }) => {
                         navigationItems={[
                             { title: 'اساتید', href: '/admin/teachers' },
                             { title: 'دروس', href: '/admin/lessons' },
-                            { title: 'کلاس', href: '/admin/class' },
+                            { title: 'کلاس', href: '/admin/classes' },
                             { title: 'پروفایل کاربری', href: '/admin' },
                         ]}
                     />
