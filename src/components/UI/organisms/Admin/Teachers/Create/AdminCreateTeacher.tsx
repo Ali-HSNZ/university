@@ -37,7 +37,7 @@ const AdminCreateTeacher = () => {
                 />
             </div>
             <div className='col-span-4 flex justify-end'>
-                <DButton>ایجاد</DButton>
+                <DButton>ثبت</DButton>
             </div>
         </form>
     )
