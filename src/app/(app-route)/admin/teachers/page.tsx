@@ -1,7 +1,13 @@
-import { AdminManageTeachers } from '@templates/AdminManageTeachers'
+import { type Metadata } from 'next'
+
+import { AdminManageTeachersTemplate } from '@templates/AdminManageTeachersTemplate'
+
+export const metadata: Metadata = {
+    title: 'سامانه دانشجویی | اساتید',
+}
 
 const page = () => {
-    return <AdminManageTeachers />
+    return <AdminManageTeachersTemplate />
 }
 
 export default page

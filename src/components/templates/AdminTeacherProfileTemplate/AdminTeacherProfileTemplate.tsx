@@ -9,7 +9,7 @@ import { DButton } from '@atoms/DButton'
 import { DSelect } from '@atoms/DSelect'
 import { DTextInput } from '@atoms/DTextInput'
 
-const AdminTeacherProfile = () => {
+const AdminTeacherProfileTemplate = () => {
     const [files, setFiles] = useState<FileWithPath[]>([])
 
     const { push } = useRouter()
@@ -56,4 +56,4 @@ const AdminTeacherProfile = () => {
     )
 }
 
-export default AdminTeacherProfile
+export default AdminTeacherProfileTemplate

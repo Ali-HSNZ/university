@@ -16,16 +16,13 @@ const ClassAssignment: FC<IClassAssignmentProps> = ({ close }) => {
     return (
         <section>
             <DSelect
+                label='نام درس'
                 onChange={handleSelectedClass}
                 data={['ریاضی گسسته', 'مدار منطقی', 'معادلات دیفرانسیل', 'گرافیک و متحرک سازی']}
             />
 
             {selectedClass && (
                 <div className='mt-4 grid grid-cols-2 gap-3'>
-                    <div className={`text-sm flex gap-1 col-span-2`}>
-                        <p className='font-semibold'>نام درس:</p>
-                        <p className='font-normal'>{selectedClass}</p>
-                    </div>
                     {STATIC_CLASS_DATA.map((item) => (
                         <div key={item.id} className={`text-sm flex gap-1`}>
                             <p className='font-semibold'>{item.title}:</p>

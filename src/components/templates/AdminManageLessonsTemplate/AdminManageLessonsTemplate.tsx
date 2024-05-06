@@ -1,23 +1,23 @@
 import { Menu } from '@mantine/core'
 
-import { AdminCreateClass } from '@organisms/Admin/Classes/Create'
-import { AdminClassesList } from '@organisms/Admin/Classes/List'
+import { AdminCreateLesson } from '@organisms/Admin/Lessons/Create'
+import { AdminLessonsList } from '@organisms/Admin/Lessons/List'
 
 import { DButton } from '@atoms/DButton'
 
-const AdminManageClasses = () => {
+const AdminManageLessonsTemplate = () => {
     return (
         <section className='flex flex-col gap-6'>
-            {/* Add class */}
+            {/* Add lesson */}
             <div>
-                <p>ثبت کلاس</p>
-                <AdminCreateClass />
+                <p>ثبت درس</p>
+                <AdminCreateLesson />
             </div>
 
-            {/* Class list */}
+            {/* Lessons list */}
             <div className='w-full flex flex-col gap-6'>
                 <div className='w-full flex items-center justify-between'>
-                    <p>لیست کلاس ها</p>
+                    <p>لیست دروس</p>
                     <Menu>
                         <Menu.Target>
                             <DButton variant='light'>خروجی جدول</DButton>
@@ -29,10 +29,10 @@ const AdminManageClasses = () => {
                     </Menu>
                 </div>
 
-                <AdminClassesList />
+                <AdminLessonsList />
             </div>
         </section>
     )
 }
 
-export default AdminManageClasses
+export default AdminManageLessonsTemplate

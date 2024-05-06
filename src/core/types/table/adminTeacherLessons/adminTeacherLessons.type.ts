@@ -6,7 +6,6 @@ type AdminTeacherLessons = {
     day: string
     test_date: string
     test_time: string
-    unit: number
     operators: unknown
 }
 

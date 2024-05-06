@@ -48,9 +48,6 @@ const Table = () => {
         columnHelper.accessor('test_time', {
             header: 'ساعت برگزاری آزمون',
         }),
-        columnHelper.accessor('unit', {
-            header: 'واحد',
-        }),
         columnHelper.accessor('operators', {
             header: 'عملیات',
             cell({ cell }) {

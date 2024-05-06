@@ -1,7 +1,6 @@
-import { AdminManageClasses } from '@templates/AdminManageClasses'
-
+import { AdminManageClassesTemplate } from '@templates/AdminManageClassesTemplate'
 const page = () => {
-    return <AdminManageClasses />
+    return <AdminManageClassesTemplate />
 }
 
 export default page

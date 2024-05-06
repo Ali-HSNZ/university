@@ -5,13 +5,13 @@ import AdminTeachersLessonsList from '@organisms/Admin/Teachers/Lessons/AdminTea
 
 import { DButton } from '@atoms/DButton'
 
-const AdminTeacherLessons = () => {
+const AdminTeacherClassesTemplate = () => {
     const { push } = useRouter()
 
     return (
         <section>
             <div className='w-full flex justify-between items-center'>
-                <p>دروس استاد محمد رضوی</p>
+                <p>کلاس های استاد محمد رضوی</p>
                 <DButton onClick={() => push('/admin/teachers')} variant='outline' leftSection={<IconArrowBack />}>
                     لیست اساتید
                 </DButton>
@@ -24,4 +24,4 @@ const AdminTeacherLessons = () => {
     )
 }
 
-export default AdminTeacherLessons
+export default AdminTeacherClassesTemplate
