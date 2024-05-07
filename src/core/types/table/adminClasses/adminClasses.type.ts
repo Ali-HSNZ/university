@@ -1,4 +1,4 @@
-type AdminClassesListTable = {
+type TAdminClassesListTableType = {
     index?: number
     title: string
     start_time: string
@@ -10,4 +10,4 @@ type AdminClassesListTable = {
     operators?: unknown
 }
 
-export default AdminClassesListTable
+export default TAdminClassesListTableType

@@ -1,12 +1,12 @@
-import { type DynamicTableWithZoneType } from '@core/types/dynamic-table-with-zone'
-import { type AdminLessonsListTable } from '@core/types/table/adminLessons'
+import { type TDynamicTableWithZoneType } from '@core/types/dynamic-table-with-zone'
+import { type TAdminLessonsListTableType } from '@core/types/table/adminLessons'
 
-const tableDataGenerator = (data: AdminLessonsListTable[]) => {
-    const result: DynamicTableWithZoneType[] = []
+const tableDataGenerator = (data: TAdminLessonsListTableType[]) => {
+    const result: TDynamicTableWithZoneType[] = []
 
     if (data) {
         data.forEach((singleClass) => {
-            const provinceEntry: DynamicTableWithZoneType = {
+            const provinceEntry: TDynamicTableWithZoneType = {
                 ['عنوان']: singleClass.title,
                 ['کد استاندارد']: singleClass.code,
                 ['نوع درس']: singleClass.lesson_type,

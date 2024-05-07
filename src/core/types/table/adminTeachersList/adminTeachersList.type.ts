@@ -1,4 +1,4 @@
-type AdminTeachersListTable = {
+type TAdminTeachersListTableType = {
     index?: number
     code: number
     first_name: string
@@ -9,4 +9,4 @@ type AdminTeachersListTable = {
     operators?: unknown
 }
 
-export default AdminTeachersListTable
+export default TAdminTeachersListTableType

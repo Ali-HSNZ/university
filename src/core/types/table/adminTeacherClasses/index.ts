@@ -1,3 +1,3 @@
-import type TAdminTeacherClassesType from './adminTeacherClasses.type'
+import type TAdminTeacherClassesTableType from './adminTeacherClasses.type'
 
-export type { TAdminTeacherClassesType }
+export type { TAdminTeacherClassesTableType }

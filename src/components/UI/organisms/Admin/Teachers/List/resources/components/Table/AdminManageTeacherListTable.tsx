@@ -12,7 +12,7 @@ import { DActionIcon } from '@atoms/DActionIcon'
 
 import { Routes } from '@core/routes'
 import { type TCriticalAny } from '@core/types/critical-any'
-import { type AdminTeachersListTable } from '@core/types/table/adminTeachersList'
+import { type TAdminTeachersListTableType } from '@core/types/table/adminTeachersList'
 
 import { ClassAssignment, STATIC_TABLE_DATA } from './resources'
 
@@ -21,7 +21,7 @@ const Table = () => {
 
     const [opened, { open, close }] = useDisclosure(false)
 
-    const columnHelper = createColumnHelper<AdminTeachersListTable>()
+    const columnHelper = createColumnHelper<TAdminTeachersListTableType>()
 
     const deleteTeacherById = ({ first_name, last_name }: { first_name: string; last_name: string }) => {
         modals.openConfirmModal({

@@ -1,3 +1,3 @@
-import type AdminTeachersListTable from './adminTeachersList.type'
+import type TAdminTeachersListTableType from './adminTeachersList.type'
 
-export type { AdminTeachersListTable }
+export type { TAdminTeachersListTableType }

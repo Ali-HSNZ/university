@@ -1,4 +1,4 @@
-type AdminLessonsListTable = {
+type TAdminLessonsListTableType = {
     index?: number
     title: string
     code: string
@@ -8,4 +8,4 @@ type AdminLessonsListTable = {
     operators?: unknown
 }
 
-export default AdminLessonsListTable
+export default TAdminLessonsListTableType

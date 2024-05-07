@@ -1,4 +1,4 @@
-type TAdminTeacherClassesType = {
+type TAdminTeacherClassesTableType = {
     index?: number
     title: string
     start_time: string
@@ -9,4 +9,4 @@ type TAdminTeacherClassesType = {
     operators?: unknown
 }
 
-export default TAdminTeacherClassesType
+export default TAdminTeacherClassesTableType

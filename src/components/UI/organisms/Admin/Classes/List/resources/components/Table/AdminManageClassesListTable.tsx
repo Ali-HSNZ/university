@@ -8,12 +8,12 @@ import { DTable } from '@molecules/DTable'
 import { DActionIcon } from '@atoms/DActionIcon'
 
 import { type TCriticalAny } from '@core/types/critical-any'
-import { type AdminClassesListTable } from '@core/types/table/adminClasses'
+import { type TAdminClassesListTableType } from '@core/types/table/adminClasses'
 
 import { STATIC_TABLE_DATA } from './resources'
 
 const Table = () => {
-    const columnHelper = createColumnHelper<AdminClassesListTable>()
+    const columnHelper = createColumnHelper<TAdminClassesListTableType>()
 
     const deleteClassById = (classTitle: string) => {
         modals.openConfirmModal({
