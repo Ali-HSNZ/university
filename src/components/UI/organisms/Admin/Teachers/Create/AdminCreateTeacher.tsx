@@ -16,7 +16,6 @@ const AdminCreateTeacher = () => {
             <DTextInput withAsterisk label='نام خانوادگی' />
             <DTextInput withAsterisk label='کد ملی' />
             <DTextInput withAsterisk label='شماره تماس' />
-            <DTextInput withAsterisk label='کد' />
             <DTextInput withAsterisk label='سن' type='number' />
             <DSelect withAsterisk data={['مرد', 'زن']} label='جنسیت' />
             <DSelect

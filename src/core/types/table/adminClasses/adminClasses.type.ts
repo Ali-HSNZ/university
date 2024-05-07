@@ -1,5 +1,5 @@
 type AdminClassesListTable = {
-    index: number
+    index?: number
     title: string
     start_time: string
     end_time: string
@@ -7,7 +7,7 @@ type AdminClassesListTable = {
     test_date: string
     test_time: string
     unit: number
-    operators: unknown
+    operators?: unknown
 }
 
 export default AdminClassesListTable

@@ -25,8 +25,6 @@ const Table = () => {
     }
 
     const columns: TCriticalAny[] = [
-        // Add the index column
-        // Add the index column
         columnHelper.accessor('index', {
             header: 'ردیف',
             cell: ({ cell }) => cell.row.index + 1,

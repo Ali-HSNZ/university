@@ -4,10 +4,10 @@ import { type TCriticalAny } from '@core/types/critical-any'
 
 import 'jspdf-autotable'
 
-import type IExportToPDFProps from './types/type'
+import { type IExportToPDFProps } from './resources'
 
-const exportToPDF = ({ headers, tableData }: IExportToPDFProps) => {
-    const doc: TCriticalAny = new jsPDF({ putOnlyUsedFonts: true })
+const exportToPDF = ({ headers, tableData, title }: IExportToPDFProps) => {
+    const doc: TCriticalAny = new jsPDF({ putOnlyUsedFonts: true, format: 'a3' })
 
     const baseUrl =
         process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://front.bonyad360.dornicaapi.ir'
@@ -24,7 +24,7 @@ const exportToPDF = ({ headers, tableData }: IExportToPDFProps) => {
         head: [headers],
         headStyles: {
             cellPadding: 4,
-            fillColor: [0, 45, 128], // example header background color
+            fillColor: [0, 81, 230], // example header background color
             halign: 'right', // horizontal alignment: 'left', 'center', 'right', 'justify'
             valign: 'middle', // vertical alignment: 'top', 'middle', 'bottom'
         },
@@ -37,7 +37,7 @@ const exportToPDF = ({ headers, tableData }: IExportToPDFProps) => {
         styles: { font: 'iranYekanFont' },
     }
     doc.autoTable(content)
-    doc.save('report.pdf')
+    doc.save(`${title || 'table'}.pdf`)
 }
 
 export default exportToPDF

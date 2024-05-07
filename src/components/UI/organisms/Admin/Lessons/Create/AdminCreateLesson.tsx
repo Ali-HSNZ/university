@@ -6,7 +6,6 @@ const AdminCreateLesson = () => {
     return (
         <form className='bg-white grid grid-cols-4 gap-6 p-6 mt-4'>
             <DTextInput withAsterisk label='عنوان' />
-            <DTextInput withAsterisk label='کد استاندارد' />
             <DSelect label='نوع درس' data={['تخصصی', 'عمومی اختیاری', 'پروژه', 'اختیاری', 'عمومی', 'پایه', 'جبرانی']} />
             <DSelect label='واحد تئوری' data={['0', '1', '2', '3']} />
             <DSelect label='واحد عملی' data={['0', '1', '2', '3']} />
