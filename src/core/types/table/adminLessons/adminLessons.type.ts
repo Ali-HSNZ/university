@@ -1,11 +1,11 @@
 type AdminLessonsListTable = {
-    index: number
+    index?: number
     title: string
     code: string
     lesson_type: string
     theory_unit: string
     practical_unit: string
-    operators: unknown
+    operators?: unknown
 }
 
 export default AdminLessonsListTable

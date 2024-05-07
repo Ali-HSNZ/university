@@ -1,3 +1,4 @@
 import AdminManageLessonsListTable from './components/Table/AdminManageLessonsListTable'
+import tableDataGenerator from './utils/table-generator.utils'
 
-export { AdminManageLessonsListTable }
+export { tableDataGenerator, AdminManageLessonsListTable }

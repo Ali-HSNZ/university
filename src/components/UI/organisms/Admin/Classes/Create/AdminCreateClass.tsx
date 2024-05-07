@@ -1,4 +1,5 @@
 import TimePicker from 'react-multi-date-picker/plugins/time_picker'
+import { IconCheck } from '@tabler/icons-react'
 
 import { DButton } from '@atoms/DButton'
 import { DDatePicker } from '@atoms/DDatePicker'
@@ -40,7 +41,7 @@ const AdminCreateClass = () => {
                 />
 
                 <div className='col-span-4 flex justify-end'>
-                    <DButton>ثبت</DButton>
+                    <DButton rightSection={<IconCheck />}>ثبت</DButton>
                 </div>
             </form>
         </section>

@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { Menu } from '@mantine/core'
+import { IconDownload } from '@tabler/icons-react'
 
 import { DButton } from '@atoms/DButton'
 
@@ -38,7 +39,9 @@ const AdminClassesList = () => {
                 <p>لیست کلاس ها</p>
                 <Menu>
                     <Menu.Target>
-                        <DButton variant='light'>خروجی جدول</DButton>
+                        <DButton rightSection={<IconDownload />} variant='light'>
+                            خروجی جدول
+                        </DButton>
                     </Menu.Target>
                     <Menu.Dropdown>
                         <Menu.Item onClick={onDownloadPdf}>خروجی فایل PDF</Menu.Item>
