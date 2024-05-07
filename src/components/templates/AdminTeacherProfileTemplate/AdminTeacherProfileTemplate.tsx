@@ -27,7 +27,6 @@ const AdminTeacherProfileTemplate = () => {
                 <DTextInput withAsterisk defaultValue={'حسن زاده'} label='نام خانوادگی' />
                 <DTextInput withAsterisk defaultValue='4990211162' label='کد ملی' />
                 <DTextInput withAsterisk label='شماره تماس' defaultValue='09302520508' />
-                <DTextInput withAsterisk label='کد' defaultValue={'8622798465'} />
                 <DTextInput withAsterisk label='رمز عبور' />
                 <DTextInput withAsterisk defaultValue={'23'} label='سن' type='number' />
                 <DSelect withAsterisk data={['مرد', 'زن']} defaultValue={'مرد'} label='جنسیت' />

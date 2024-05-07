@@ -8,12 +8,12 @@ import { DTable } from '@molecules/DTable'
 import { DActionIcon } from '@atoms/DActionIcon'
 
 import { type TCriticalAny } from '@core/types/critical-any'
-import { type AdminTeacherLessons } from '@core/types/table/adminTeacherLessons'
+import { type TAdminTeacherClassesType } from '@core/types/table/adminTeacherClasses'
 
 import { STATIC_TABLE_DATA } from './resources'
 
 const Table = () => {
-    const columnHelper = createColumnHelper<AdminTeacherLessons>()
+    const columnHelper = createColumnHelper<TAdminTeacherClassesType>()
 
     const deleteTeacherLesson = (title: string) => {
         modals.openConfirmModal({
@@ -31,7 +31,7 @@ const Table = () => {
             cell: ({ cell }) => cell.row.index + 1,
         }),
         columnHelper.accessor('title', {
-            header: 'عنوان',
+            header: 'نام درس',
         }),
         columnHelper.accessor('start_time', {
             header: 'ساعت شروع کلاس',

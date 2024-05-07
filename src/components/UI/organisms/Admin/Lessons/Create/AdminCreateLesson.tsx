@@ -19,7 +19,7 @@ const AdminCreateLesson = () => {
                 <DSelect label='واحد عملی' data={['0', '1', '2', '3']} />
 
                 <div className='col-span-4 flex justify-end'>
-                    <DButton rightSection={<IconCheck />}>ثبت</DButton>
+                    <DButton leftSection={<IconCheck />}>ثبت</DButton>
                 </div>
             </form>
         </section>

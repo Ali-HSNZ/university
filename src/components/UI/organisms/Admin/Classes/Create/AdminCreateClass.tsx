@@ -41,7 +41,7 @@ const AdminCreateClass = () => {
                 />
 
                 <div className='col-span-4 flex justify-end'>
-                    <DButton rightSection={<IconCheck />}>ثبت</DButton>
+                    <DButton leftSection={<IconCheck />}>ثبت</DButton>
                 </div>
             </form>
         </section>

@@ -40,7 +40,7 @@ const AdminLessonsList = () => {
                 <p>لیست دروس</p>
                 <Menu>
                     <Menu.Target>
-                        <DButton rightSection={<IconDownload />} variant='light'>
+                        <DButton leftSection={<IconDownload />} variant='light'>
                             خروجی جدول
                         </DButton>
                     </Menu.Target>

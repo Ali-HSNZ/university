@@ -44,22 +44,20 @@ const Table = () => {
         columnHelper.accessor('last_name', {
             header: 'نام خانوادگی',
         }),
-        columnHelper.accessor('age', {
-            header: 'سن',
+        columnHelper.accessor('code', {
+            header: 'کد استاد',
         }),
         columnHelper.accessor('status', {
             header: 'وضعیت',
             cell({ cell }) {
-                const isActive = cell.row.original.status
+                const isActive = cell.row.original.status === 1
                 return <Badge color={isActive ? 'green' : 'red'}> {isActive ? 'در حال فعالیت' : 'عدم فعالیت'}</Badge>
             },
         }),
         columnHelper.accessor('class_count', {
             header: 'تعداد کلاس',
         }),
-        columnHelper.accessor('code', {
-            header: 'کد استاد',
-        }),
+
         columnHelper.accessor('operators', {
             header: 'عملیات',
             cell({ cell }) {
