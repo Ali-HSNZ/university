@@ -1,5 +1,5 @@
 'use client'
-import TeacherList from './List/TeacherList'
+import TeacherClasses from './List/TeacherClasses'
 import TeacherForm from './Me/Form/TeacherForm'
 
-export { TeacherList, TeacherForm }
+export { TeacherClasses, TeacherForm }

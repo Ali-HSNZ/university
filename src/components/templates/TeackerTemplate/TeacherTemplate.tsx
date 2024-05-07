@@ -1,7 +1,7 @@
-import { TeacherList } from '@organisms/Teacher'
+import { TeacherClasses } from '@organisms/Teacher'
 
 const TeacherTemplate = () => {
-    return <TeacherList />
+    return <TeacherClasses />
 }
 
 export default TeacherTemplate

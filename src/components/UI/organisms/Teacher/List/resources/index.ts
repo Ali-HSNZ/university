@@ -1,3 +1,3 @@
-import TeacherListTable from './components/Table/TeacherListTable'
+import TeacherClassesTable from './components/Table/TeacherClassesTable'
 
-export { TeacherListTable }
+export { TeacherClassesTable }

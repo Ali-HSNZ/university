@@ -3,11 +3,12 @@ import { createColumnHelper, getCoreRowModel, useReactTable } from '@tanstack/re
 import { DTable } from '@molecules/DTable'
 
 import { type TCriticalAny } from '@core/types/critical-any'
+import { type TTeacherClassesTableType } from '@core/types/table/teacherClasses'
 
 import { STATIC_TABLE_DATA } from './resources'
 
 const Table = () => {
-    const columnHelper = createColumnHelper()
+    const columnHelper = createColumnHelper<TTeacherClassesTableType>()
 
     const columns: TCriticalAny[] = [
         // Add the index column
@@ -16,7 +17,7 @@ const Table = () => {
             cell: ({ cell }) => cell.row.index + 1,
         }),
         columnHelper.accessor('title', {
-            header: 'عنوان',
+            header: 'نام درس',
         }),
         columnHelper.accessor('start_time', {
             header: 'ساعت شروع کلاس',
@@ -28,10 +29,10 @@ const Table = () => {
             header: 'روز برگزاری کلاس',
         }),
         columnHelper.accessor('test_date', {
-            header: 'تاریخ  آزمون',
+            header: 'تاریخ آزمون',
         }),
-        columnHelper.accessor('unit', {
-            header: 'واحد',
+        columnHelper.accessor('test_time', {
+            header: 'ساعت برگزاری آزمون',
         }),
     ]
 

@@ -49,7 +49,7 @@ const TeacherLayout: FC<PropsWithChildren> = ({ children }) => {
 
                     <DNavigationTab
                         navigationItems={[
-                            { title: 'لیست دروس', href: '/teacher' },
+                            { title: 'لیست کلاس‌ها', href: '/teacher' },
                             { title: 'پروفایل کاربری', href: '/teacher/me' },
                         ]}
                     />
