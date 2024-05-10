@@ -1,22 +1,31 @@
 import { useMemo } from 'react'
 import { Menu } from '@mantine/core'
 import { IconDownload } from '@tabler/icons-react'
+import { useQuery } from '@tanstack/react-query'
+
+import { EmptyBoundary } from '@partials/boundaries/EmptyBoundary'
+import { DFetchingContainer } from '@partials/container/DFetchingContainer'
 
 import { DButton } from '@atoms/DButton'
 
+import { getTeachersListFn } from '@api/get-teachers-list'
+
+import { QueryKeys } from '@core/enums/query-keys'
+import { type TTeachersListFnType } from '@core/types/data/teachers-list'
 import { exportToPDF } from '@core/utils/common/export-to-pdf'
 import { useExportTable } from '@core/utils/hooks/use-export-table'
 
 import { AdminManageTeacherListTable } from './resources'
-import { STATIC_TABLE_DATA } from './resources/components/Table/resources'
 import tableDataGenerator from './resources/utils/table-generator.utils'
 
 const AdminManageTeachersList = () => {
-    const tableData = useMemo(() => {
-        return tableDataGenerator(STATIC_TABLE_DATA)
-    }, [])
-
     const { onDownloadExcel } = useExportTable()
+
+    // Fetching Status
+    const { isFetching, isError, isSuccess, data } = useQuery<TTeachersListFnType[]>({
+        queryKey: [QueryKeys.TeachersList],
+        queryFn: () => getTeachersListFn(),
+    })
 
     const onDownloadPdf = () => {
         if (tableData) {
@@ -34,6 +43,10 @@ const AdminManageTeachersList = () => {
             })
         }
     }
+
+    const tableData = useMemo(() => {
+        if (data) return tableDataGenerator(data)
+    }, [data])
 
     return (
         <div className='w-full flex flex-col gap-6'>
@@ -54,7 +67,14 @@ const AdminManageTeachersList = () => {
                 </Menu>
             </div>
 
-            <AdminManageTeacherListTable />
+            <DFetchingContainer
+                isError={isError}
+                isFetching={isFetching}
+                isSuccess={isSuccess}
+                emptyBoundary={data?.length === 0 && <EmptyBoundary />}
+            >
+                <AdminManageTeacherListTable data={data as TTeachersListFnType[]} />
+            </DFetchingContainer>
         </div>
     )
 }

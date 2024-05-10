@@ -2,7 +2,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { IconCheck } from '@tabler/icons-react'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { DField } from '@molecules/DField'
 
@@ -13,6 +13,7 @@ import { DTextInput } from '@atoms/DTextInput'
 
 import { createTeacherMutationFn } from '@api/create-teacher'
 
+import { QueryKeys } from '@core/enums/query-keys'
 import { type TCriticalAny } from '@core/types/critical-any'
 import { type IAuthMutationFnProps } from '@core/types/data/auth'
 import { type TCreateTeacherForm } from '@core/types/forms-schema/create-teacher-form'
@@ -38,11 +39,16 @@ const AdminCreateTeacher = () => {
         resolver: yupResolver(createTeacherFormSchema),
     })
 
+    const queryClient = useQueryClient()
+
     const { isPending, mutate } = useMutation({
         mutationFn: createTeacherMutationFn,
         onSuccess: (res: IAuthMutationFnProps) => {
             toast.success(res.message)
             reset()
+            queryClient.invalidateQueries({
+                queryKey: [QueryKeys.TeachersList],
+            })
         },
         onError: (err: TCriticalAny) => {
             if (err.code === 400) {

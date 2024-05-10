@@ -1,5 +1,6 @@
-import { useRouter } from 'next/navigation'
-import { Badge, Menu, Modal } from '@mantine/core'
+import { type FC } from 'react'
+import Link from 'next/link'
+import { Menu, Modal } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { modals } from '@mantine/modals'
 import { IconChevronLeft, IconDotsVertical, IconPlus, IconTrash, IconUser } from '@tabler/icons-react'
@@ -12,16 +13,19 @@ import { DActionIcon } from '@atoms/DActionIcon'
 
 import { Routes } from '@core/routes'
 import { type TCriticalAny } from '@core/types/critical-any'
-import { type TAdminTeachersListTableType } from '@core/types/table/adminTeachersList'
+import { type TTeachersListFnType } from '@core/types/data/teachers-list'
 
-import { ClassAssignment, STATIC_TABLE_DATA } from './resources'
+import { ClassAssignment, type IAdminManageTeacherListTableProps } from './resources'
 
-const Table = () => {
-    const { push } = useRouter()
+interface ITabelDataType extends TTeachersListFnType {
+    operators: unknown
+    index: number
+}
 
+const Table: FC<IAdminManageTeacherListTableProps> = ({ data }) => {
     const [opened, { open, close }] = useDisclosure(false)
 
-    const columnHelper = createColumnHelper<TAdminTeachersListTableType>()
+    const columnHelper = createColumnHelper<ITabelDataType>()
 
     const deleteTeacherById = ({ first_name, last_name }: { first_name: string; last_name: string }) => {
         modals.openConfirmModal({
@@ -47,12 +51,8 @@ const Table = () => {
         columnHelper.accessor('code', {
             header: 'کد استاد',
         }),
-        columnHelper.accessor('status', {
-            header: 'وضعیت',
-            cell({ cell }) {
-                const isActive = cell.row.original.status === 1
-                return <Badge color={isActive ? 'green' : 'red'}> {isActive ? 'در حال فعالیت' : 'عدم فعالیت'}</Badge>
-            },
+        columnHelper.accessor('national_code', {
+            header: 'کدملی',
         }),
         columnHelper.accessor('class_count', {
             header: 'تعداد کلاس',
@@ -70,7 +70,8 @@ const Table = () => {
                         </Menu.Target>
                         <Menu.Dropdown>
                             <Menu.Item
-                                onClick={() => push(Routes.AdminTeacherProfile(cell.row.original.code))}
+                                component={Link}
+                                href={Routes.AdminTeacherProfile(Number(cell.row.original.code))}
                                 leftSection={<IconUser size={19} />}
                                 rightSection={<IconChevronLeft size={19} />}
                             >
@@ -82,9 +83,10 @@ const Table = () => {
                             </Menu.Item>
 
                             <Menu.Item
+                                component={Link}
+                                href={Routes.AdminTeacherLessons(Number(cell.row.original.code))}
                                 rightSection={<IconChevronLeft size={19} />}
                                 leftSection={<IconListCheck size={19} />}
-                                onClick={() => push(Routes.AdminTeacherLessons(cell.row.original.code))}
                             >
                                 لیست کلاس‌ها
                             </Menu.Item>
@@ -110,7 +112,7 @@ const Table = () => {
     ]
 
     const table = useReactTable({
-        data: STATIC_TABLE_DATA,
+        data,
         columns,
         getCoreRowModel: getCoreRowModel(),
     })

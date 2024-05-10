@@ -1,5 +1,4 @@
 interface ILoadingBoundaryProps {
-    className?: string
     text?: string
 }
 
