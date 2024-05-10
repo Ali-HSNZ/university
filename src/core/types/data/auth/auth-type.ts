@@ -1,7 +1,8 @@
 interface IAuthMutationFnProps {
-    data: null
+    data: { token: string; userType: 'admin' | 'teacher' }
     message: string
-    statusCode: number
+    code: number
+    errors?: Record<string, string>
 }
 
 export default IAuthMutationFnProps

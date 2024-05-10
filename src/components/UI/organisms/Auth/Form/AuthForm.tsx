@@ -9,9 +9,10 @@ import { DField } from '@molecules/DField'
 import { DButton } from '@atoms/DButton'
 import { DTextInput } from '@atoms/DTextInput'
 
-import authMutationFn from '@api/auth/auth.api'
+import { authMutationFn } from '@api/auth'
 
 import { setCookieStorageItem } from '@core/services/storage'
+import { type IAuthMutationFnProps } from '@core/types/data/auth'
 import { type TLoginFormSchemaType } from '@core/types/forms-schema/login-form'
 import { loginFormSchema } from '@core/utils/validations/login-form'
 
@@ -32,7 +33,7 @@ const AuthForm = () => {
 
     const { isPending, isSuccess, mutate } = useMutation({
         mutationFn: authMutationFn,
-        onSuccess: (res) => {
+        onSuccess: (res: IAuthMutationFnProps) => {
             toast.success(res.message)
             setCookieStorageItem('Secure-KY', res.data.token, {
                 secure: true,
@@ -41,7 +42,7 @@ const AuthForm = () => {
             })
             push(`/${res.data.userType}`)
         },
-        onError: (err) => {
+        onError: (err: IAuthMutationFnProps) => {
             toast.error(err.message)
         },
     })

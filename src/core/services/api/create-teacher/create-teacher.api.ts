@@ -2,12 +2,12 @@ import axios, { AxiosError } from 'axios'
 
 import { baseApiUrl } from '@api/base-api-url'
 
-import { type TLoginFormSchemaType } from '@core/types/forms-schema/login-form'
+import { type TCreateTeacherForm } from '@core/types/forms-schema/create-teacher-form'
 
-const authMutationFn = async (values: TLoginFormSchemaType) => {
+const createTeacherMutationFn = async (values: TCreateTeacherForm) => {
     try {
         const baseUrl = baseApiUrl()
-        const response = await axios.post(`${baseUrl}auth/login`, values)
+        const response = await axios.post(`${baseUrl}admin-teacher/create`, values)
         return response.data
     } catch (error) {
         if (error instanceof AxiosError) return Promise.reject(error.response?.data || error)
@@ -15,4 +15,4 @@ const authMutationFn = async (values: TLoginFormSchemaType) => {
     }
 }
 
-export default authMutationFn
+export default createTeacherMutationFn

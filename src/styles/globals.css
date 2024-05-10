@@ -1,13 +1,9 @@
 /* Components */
-@import './components/scroll-bar.css';
 @import './components/datepicker.css';
-@import './components/button-group.css';
 @import './components/toast.css';
 
 /* Vendors */
 @import './vendors/mantine.css';
 @import './vendors/tailwind.css';
-@import './vendors/highchart.css';
-
 /* Base */
 @import './base/base.css';

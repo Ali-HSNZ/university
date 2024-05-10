@@ -1,6 +1,0 @@
-.mantine-ButtonGroup-group[data-orientation='horizontal'] .mantine-Button-root:nth-child(2) {
-    @apply !rounded-s-none;
-}
-.mantine-ButtonGroup-group[data-orientation='horizontal'] .mantine-Button-root:nth-child(1) {
-    @apply !rounded-e-none;
-}
