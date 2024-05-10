@@ -1,8 +1,10 @@
-const setCookieStorageItem = (
-    name: string,
-    value: string,
-    options: { expires: string; secure: string; sameSite: string }
-) => {
+type TCookieOptionsType = {
+    expires?: number // Expiry time in milliseconds from the current time.
+    secure?: boolean // Flag indicating whether the cookie should only be sent over secure (HTTPS) connections.
+    sameSite?: 'Lax' | 'Strict' // Control whether cookies are sent with cross-origin requests.
+}
+
+const setCookieStorageItem = (name: string, value: string | object, options?: TCookieOptionsType) => {
     const cookieValue = typeof value === 'object' ? JSON.stringify(value) : value
 
     let cookieString = `${name}=${encodeURIComponent(cookieValue)}; path=/`

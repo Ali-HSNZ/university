@@ -1,4 +1,4 @@
-function validateNationalCode(value: string) {
+const validateNationalCode = (value: string): boolean => {
     if (!value) return false
 
     //remove '-' dash from the string !!
@@ -62,4 +62,4 @@ function validateNationalCode(value: string) {
     return false
 }
 
-export { validateNationalCode }
+export default validateNationalCode
