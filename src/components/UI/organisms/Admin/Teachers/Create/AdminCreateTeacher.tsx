@@ -25,6 +25,7 @@ const AdminCreateTeacher = () => {
         handleSubmit,
         setError,
         reset,
+        setValue,
         formState: { errors },
     } = useForm<TCreateTeacherForm>({
         defaultValues: {
@@ -46,6 +47,8 @@ const AdminCreateTeacher = () => {
         onSuccess: (res: IAuthMutationFnProps) => {
             toast.success(res.message)
             reset()
+            setValue('education', null as TCriticalAny)
+            setValue('gender', null as TCriticalAny)
             queryClient.invalidateQueries({
                 queryKey: [QueryKeys.TeachersList],
             })

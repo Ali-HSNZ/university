@@ -9,7 +9,7 @@ const tableDataGenerator = (data: TAdminLessonsListTableType[]) => {
             const provinceEntry: TDynamicTableWithZoneType = {
                 ['عنوان']: singleClass.title,
                 ['کد استاندارد']: singleClass.code,
-                ['نوع درس']: singleClass.lesson_type,
+                ['نوع درس']: singleClass.type,
                 ['واحد تئوری']: singleClass.theory_unit,
                 ['واحد عملی']: singleClass.practical_unit,
             }

@@ -1,26 +1,51 @@
+import { type FC } from 'react'
+import { toast } from 'react-toastify'
 import { Menu } from '@mantine/core'
 import { modals } from '@mantine/modals'
 import { IconDotsVertical, IconTrash } from '@tabler/icons-react'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { createColumnHelper, getCoreRowModel, useReactTable } from '@tanstack/react-table'
 
 import { DTable } from '@molecules/DTable'
 
 import { DActionIcon } from '@atoms/DActionIcon'
 
+import { deleteLessonByCodeFn } from '@api/delete-lesson-by-code'
+
+import { QueryKeys } from '@core/enums/query-keys'
 import { type TCriticalAny } from '@core/types/critical-any'
+import { type IAuthMutationFnProps } from '@core/types/data/auth'
 import { type TAdminLessonsListTableType } from '@core/types/table/adminLessons'
 
-import { STATIC_TABLE_DATA } from './resources'
+import { type IAdminManageLessonsListTableProps } from './resources'
 
-const Table = () => {
+const Table: FC<IAdminManageLessonsListTableProps> = ({ data }) => {
     const columnHelper = createColumnHelper<TAdminLessonsListTableType>()
 
-    const deleteLessonById = (lesson: string) => {
+    const queryClient = useQueryClient()
+
+    const { mutate } = useMutation({
+        mutationFn: (lessonCode: string) => deleteLessonByCodeFn(lessonCode),
+        onSuccess: (res: IAuthMutationFnProps) => {
+            toast.info(res?.message)
+            queryClient.invalidateQueries({
+                queryKey: [QueryKeys.LessonsList],
+            })
+        },
+        onError: (err: TCriticalAny) => {
+            toast.error(err.message)
+        },
+    })
+
+    const deleteLessonById = (code: string, title: string) => {
         modals.openConfirmModal({
-            title: `حذف درس ${lesson}`,
+            title: `حذف درس ${title}`,
             children: <p className='text-gray-600 text-sm font-light'>پس از حذف درس، امکان بازگشت وجود ندارد.</p>,
             labels: { confirm: 'حذف', cancel: 'بازگشت' },
             confirmProps: { color: 'red' },
+            onConfirm() {
+                mutate(code)
+            },
         })
     }
 
@@ -36,7 +61,7 @@ const Table = () => {
         columnHelper.accessor('code', {
             header: 'کد استاندارد',
         }),
-        columnHelper.accessor('lesson_type', {
+        columnHelper.accessor('type', {
             header: 'نوع درس',
         }),
         columnHelper.accessor('theory_unit', {
@@ -56,9 +81,8 @@ const Table = () => {
                             </DActionIcon>
                         </Menu.Target>
                         <Menu.Dropdown>
-                            <hr />
                             <Menu.Item
-                                onClick={() => deleteLessonById(cell.row.original.title)}
+                                onClick={() => deleteLessonById(cell.row.original.code, cell.row.original.title)}
                                 color='#e31102'
                                 leftSection={<IconTrash size={19} />}
                             >
@@ -72,7 +96,7 @@ const Table = () => {
     ]
 
     const table = useReactTable({
-        data: STATIC_TABLE_DATA,
+        data: data,
         columns,
         getCoreRowModel: getCoreRowModel(),
     })

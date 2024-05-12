@@ -1,18 +1,24 @@
 import { type FC } from 'react'
 import Link from 'next/link'
+import { toast } from 'react-toastify'
 import { Menu, Modal } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { modals } from '@mantine/modals'
 import { IconChevronLeft, IconDotsVertical, IconPlus, IconTrash, IconUser } from '@tabler/icons-react'
 import { IconListCheck } from '@tabler/icons-react'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { createColumnHelper, getCoreRowModel, useReactTable } from '@tanstack/react-table'
 
 import { DTable } from '@molecules/DTable'
 
 import { DActionIcon } from '@atoms/DActionIcon'
 
+import { deleteTeacherByCodeFn } from '@api/delete-teacher-by-code'
+
+import { QueryKeys } from '@core/enums/query-keys'
 import { Routes } from '@core/routes'
 import { type TCriticalAny } from '@core/types/critical-any'
+import { type IAuthMutationFnProps } from '@core/types/data/auth'
 import { type TTeachersListFnType } from '@core/types/data/teachers-list'
 
 import { ClassAssignment, type IAdminManageTeacherListTableProps } from './resources'
@@ -27,14 +33,38 @@ const Table: FC<IAdminManageTeacherListTableProps> = ({ data }) => {
 
     const columnHelper = createColumnHelper<ITabelDataType>()
 
-    console.log('data: ', data)
+    const queryClient = useQueryClient()
 
-    const deleteTeacherById = ({ first_name, last_name }: { first_name: string; last_name: string }) => {
+    const { mutate } = useMutation({
+        mutationFn: (teacherCode: string) => deleteTeacherByCodeFn(teacherCode),
+        onSuccess: (res: IAuthMutationFnProps) => {
+            toast.info(res?.message)
+            queryClient.invalidateQueries({
+                queryKey: [QueryKeys.TeachersList],
+            })
+        },
+        onError: (err: TCriticalAny) => {
+            toast.error(err.message)
+        },
+    })
+
+    const deleteTeacherById = ({
+        first_name,
+        last_name,
+        code,
+    }: {
+        first_name: string
+        last_name: string
+        code: string
+    }) => {
         modals.openConfirmModal({
             title: `حذف  ${first_name} ${last_name}`,
             children: <p className='text-gray-600 text-sm font-light'>پس از حذف استاد، امکان بازگشت وجود ندارد.</p>,
             labels: { confirm: 'حذف', cancel: 'بازگشت' },
             confirmProps: { color: 'red' },
+            onConfirm() {
+                mutate(code)
+            },
         })
     }
 
@@ -97,12 +127,10 @@ const Table: FC<IAdminManageTeacherListTableProps> = ({ data }) => {
 
                             <hr />
                             <Menu.Item
-                                onClick={() =>
-                                    deleteTeacherById({
-                                        first_name: cell.row.original.first_name,
-                                        last_name: cell.row.original.last_name,
-                                    })
-                                }
+                                onClick={() => {
+                                    const { first_name, last_name, code } = cell.row.original
+                                    deleteTeacherById({ first_name, last_name, code })
+                                }}
                                 color='#e31102'
                                 leftSection={<IconTrash size={19} />}
                             >

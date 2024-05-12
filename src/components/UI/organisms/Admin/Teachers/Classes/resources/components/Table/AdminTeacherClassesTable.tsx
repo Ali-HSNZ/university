@@ -27,8 +27,6 @@ interface ITabelDataType extends TTeacherSingleClassType {
 const Table: FC<IAdminTeacherClassesTableProps> = ({ data, teacher_code }) => {
     const columnHelper = createColumnHelper<ITabelDataType>()
 
-    console.log('teacher_code;', teacher_code)
-
     const queryClient = useQueryClient()
 
     const { mutate } = useMutation({
