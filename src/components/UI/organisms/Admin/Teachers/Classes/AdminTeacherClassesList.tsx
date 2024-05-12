@@ -1,22 +1,39 @@
 import { useMemo } from 'react'
-import { useRouter } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { Menu } from '@mantine/core'
 import { IconArrowBack, IconDownload } from '@tabler/icons-react'
+import { useQuery } from '@tanstack/react-query'
+
+import { EmptyBoundary } from '@partials/boundaries/EmptyBoundary'
+import { DFetchingContainer } from '@partials/container/DFetchingContainer'
 
 import { DButton } from '@atoms/DButton'
 
+import { getTeacherClassesListFn } from '@api/get-teacher-classes-list'
+
+import { QueryKeys } from '@core/enums/query-keys'
+import { type TTeacherClassesListType, type TTeacherSingleClassType } from '@core/types/data/teacher-classes-list'
 import { exportToPDF } from '@core/utils/common/export-to-pdf'
 import { useExportTable } from '@core/utils/hooks/use-export-table'
 
 import { AdminTeacherClassesTable, tableDataGenerator } from './resources'
-import { STATIC_TABLE_DATA } from './resources/components/Table/resources'
 
 const AdminTeacherClassesList = () => {
     const { push } = useRouter()
+    const path = useParams()
+
+    const dynamicTeacherId: string = path?.teacherId ? String(path.teacherId) : ''
+
+    const { isFetching, isError, isSuccess, data } = useQuery<TTeacherClassesListType>({
+        queryKey: [QueryKeys.TeacherClassesList, { dynamicTeacherId }],
+        queryFn: () => getTeacherClassesListFn(dynamicTeacherId),
+    })
 
     const tableData = useMemo(() => {
-        return tableDataGenerator(STATIC_TABLE_DATA)
-    }, [])
+        if (data) {
+            return tableDataGenerator(data.classes)
+        }
+    }, [data])
 
     const { onDownloadExcel } = useExportTable()
 
@@ -40,7 +57,10 @@ const AdminTeacherClassesList = () => {
     return (
         <section className='flex flex-col gap-6'>
             <div className='w-full flex justify-between items-center'>
-                <p>کلاس های استاد محمد رضوی</p>
+                <p>
+                    کلاس های استاد {data?.teacher.first_name} {data?.teacher.last_name}
+                </p>
+
                 <div className='flex gap-6'>
                     <Menu>
                         <Menu.Target>
@@ -60,8 +80,17 @@ const AdminTeacherClassesList = () => {
                     </DButton>
                 </div>
             </div>
-
-            <AdminTeacherClassesTable />
+            <DFetchingContainer
+                isError={isError}
+                isFetching={isFetching}
+                isSuccess={isSuccess}
+                emptyBoundary={data?.classes?.length === 0 && <EmptyBoundary />}
+            >
+                <AdminTeacherClassesTable
+                    teacher_code={data?.teacher.teacher_code as number}
+                    data={data?.classes as TTeacherSingleClassType[]}
+                />
+            </DFetchingContainer>
         </section>
     )
 }

@@ -27,6 +27,8 @@ const Table: FC<IAdminManageTeacherListTableProps> = ({ data }) => {
 
     const columnHelper = createColumnHelper<ITabelDataType>()
 
+    console.log('data: ', data)
+
     const deleteTeacherById = ({ first_name, last_name }: { first_name: string; last_name: string }) => {
         modals.openConfirmModal({
             title: `حذف  ${first_name} ${last_name}`,
@@ -71,7 +73,7 @@ const Table: FC<IAdminManageTeacherListTableProps> = ({ data }) => {
                         <Menu.Dropdown>
                             <Menu.Item
                                 component={Link}
-                                href={Routes.AdminTeacherProfile(Number(cell.row.original.code))}
+                                href={Routes.AdminTeacherProfile(cell.row.original.code)}
                                 leftSection={<IconUser size={19} />}
                                 rightSection={<IconChevronLeft size={19} />}
                             >
@@ -82,14 +84,16 @@ const Table: FC<IAdminManageTeacherListTableProps> = ({ data }) => {
                                 تخصیص کلاس
                             </Menu.Item>
 
-                            <Menu.Item
-                                component={Link}
-                                href={Routes.AdminTeacherLessons(Number(cell.row.original.code))}
-                                rightSection={<IconChevronLeft size={19} />}
-                                leftSection={<IconListCheck size={19} />}
-                            >
-                                لیست کلاس‌ها
-                            </Menu.Item>
+                            {Boolean(cell.row.original.class_count) && (
+                                <Menu.Item
+                                    component={Link}
+                                    href={Routes.AdminTeacherLessons(cell.row.original.code)}
+                                    rightSection={<IconChevronLeft size={19} />}
+                                    leftSection={<IconListCheck size={19} />}
+                                >
+                                    لیست کلاس‌ها
+                                </Menu.Item>
+                            )}
 
                             <hr />
                             <Menu.Item

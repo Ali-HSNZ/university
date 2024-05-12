@@ -21,7 +21,6 @@ import tableDataGenerator from './resources/utils/table-generator.utils'
 const AdminManageTeachersList = () => {
     const { onDownloadExcel } = useExportTable()
 
-    // Fetching Status
     const { isFetching, isError, isSuccess, data } = useQuery<TTeachersListFnType[]>({
         queryKey: [QueryKeys.TeachersList],
         queryFn: () => getTeachersListFn(),

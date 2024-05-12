@@ -2,9 +2,9 @@ const Routes = {
     Root: '/',
     AdminPanel: '/admin/',
     AdminManageTeachersList: 'teachers/',
-    AdminTeacherProfile: (teacherCode: number) => Routes.AdminPanel + Routes.AdminManageTeachersList + teacherCode,
+    AdminTeacherProfile: (teacherCode: string) => Routes.AdminPanel + Routes.AdminManageTeachersList + teacherCode,
     AdminManageLessons: '/admin/lessons',
-    AdminTeacherLessons: (teacherCode: number) =>
+    AdminTeacherLessons: (teacherCode: string) =>
         Routes.AdminPanel + Routes.AdminManageTeachersList + teacherCode + '/classes',
 }
 
