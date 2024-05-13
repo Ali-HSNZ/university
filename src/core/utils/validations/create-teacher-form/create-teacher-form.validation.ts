@@ -27,7 +27,7 @@ const createTeacherFormSchema = Yup.object({
         .trim()
         .required('شماره موبایل الزامی می‌باشد')
         .test('isValidMobile', 'شماره موبایل معتبر نیست', (value) => phoneNumberRegex.test(value)),
-    birthDay: Yup.date().required('تاریخ تولد الزامی می‌باشد'),
+    birthDay: Yup.string().required('تاریخ تولد الزامی می‌باشد'),
     gender: Yup.string().required('جنسیت الزامی می‌باشد'),
     education: Yup.string().required('مدرک تحصیلی الزامی می‌باشد'),
     address: Yup.string()

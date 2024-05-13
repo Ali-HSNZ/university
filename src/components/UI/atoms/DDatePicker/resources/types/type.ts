@@ -10,6 +10,7 @@ interface IDatePickerProps {
     plugins?: (Plugin | Plugin[])[] | undefined
     withAsterisk?: boolean
     label?: string
+    calendarPosition?: string
     placeholder?: string
     onOpenPickNewDate?: boolean
     onChange?: (reg?: TCriticalAny) => void

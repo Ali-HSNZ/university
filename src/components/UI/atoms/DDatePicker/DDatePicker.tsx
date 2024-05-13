@@ -8,7 +8,7 @@ import { type TCriticalAny } from '@core/types/critical-any'
 import { type IDatePickerProps } from './resources'
 
 const DDatePicker = forwardRef<DatePickerProps, IDatePickerProps>(
-    ({ withAsterisk, label, minDate, onChange, maxDate, ContainerClass, ...res }, ref) => {
+    ({ withAsterisk, label, calendarPosition, minDate, onChange, maxDate, ContainerClass, ...res }, ref) => {
         return (
             <div className={`relative w-full ${ContainerClass}`}>
                 {label && (
@@ -23,10 +23,11 @@ const DDatePicker = forwardRef<DatePickerProps, IDatePickerProps>(
                     editable={false}
                     calendar={persian}
                     locale={persianFa}
+                    calendarPosition={calendarPosition}
                     minDate={minDate}
                     maxDate={maxDate}
                     onChange={(input) => {
-                        if (onChange) onChange(new Date(input as TCriticalAny))
+                        if (onChange) onChange(input)
                     }}
                     containerClassName='w-full relative'
                     inputClass='w-full mt-1 outline-none px-2 py-[7.2px] relative rounded-[5px] text-sm border border-[#ced4da] disabled:border-typography-100 disabled:bg-light-gray-300'

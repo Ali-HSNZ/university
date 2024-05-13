@@ -1,19 +1,31 @@
 import { useMemo } from 'react'
 import { Menu } from '@mantine/core'
 import { IconDownload } from '@tabler/icons-react'
+import { useQuery } from '@tanstack/react-query'
+
+import { EmptyBoundary } from '@partials/boundaries/EmptyBoundary'
+import { DFetchingContainer } from '@partials/container/DFetchingContainer'
 
 import { DButton } from '@atoms/DButton'
 
+import { getClassesListFn } from '@api/get-classes-list'
+
+import { QueryKeys } from '@core/enums/query-keys'
+import { type TClassesListFnType } from '@core/types/data/classes-list'
 import { exportToPDF } from '@core/utils/common/export-to-pdf'
 import { useExportTable } from '@core/utils/hooks/use-export-table'
 
 import { AdminManageClassesListTable, tableDataGenerator } from './resources'
-import { STATIC_TABLE_DATA } from './resources/components/Table/resources'
 
 const AdminClassesList = () => {
+    const { isFetching, isError, isSuccess, data } = useQuery<TClassesListFnType[]>({
+        queryKey: [QueryKeys.ClassesList],
+        queryFn: () => getClassesListFn(),
+    })
+
     const tableData = useMemo(() => {
-        return tableDataGenerator(STATIC_TABLE_DATA)
-    }, [])
+        if (data) return tableDataGenerator(data)
+    }, [data])
 
     const { onDownloadExcel } = useExportTable()
 
@@ -53,7 +65,14 @@ const AdminClassesList = () => {
             </div>
 
             {/* table */}
-            <AdminManageClassesListTable />
+            <DFetchingContainer
+                isError={isError}
+                isFetching={isFetching}
+                isSuccess={isSuccess}
+                emptyBoundary={data?.length === 0 && <EmptyBoundary />}
+            >
+                <AdminManageClassesListTable data={data as TClassesListFnType[]} />
+            </DFetchingContainer>
         </div>
     )
 }

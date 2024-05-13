@@ -26,6 +26,10 @@ const AdminManageTeachersList = () => {
         queryFn: () => getTeachersListFn(),
     })
 
+    const tableData = useMemo(() => {
+        if (data) return tableDataGenerator(data)
+    }, [data])
+
     const onDownloadPdf = () => {
         if (tableData) {
             const headers = Object.keys(tableData[0]).reverse()
@@ -42,10 +46,6 @@ const AdminManageTeachersList = () => {
             })
         }
     }
-
-    const tableData = useMemo(() => {
-        if (data) return tableDataGenerator(data)
-    }, [data])
 
     return (
         <div className='w-full flex flex-col gap-6'>

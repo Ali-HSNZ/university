@@ -26,31 +26,14 @@ const AdminLayout: FC<PropsWithChildren> = ({ children }) => {
                             </div>
                         </div>
 
-                        <div className='flex flex-col justify-between'>
-                            <div className='flex flex-col gap-1'>
-                                <div className='flex gap-1 text-xs'>
-                                    <p className='font-semibold'>استاد:</p>
-                                    <p>24</p>
-                                </div>
-                                <div className='flex gap-1 text-xs'>
-                                    <p className='font-semibold'>درس:</p>
-                                    <p>51</p>
-                                </div>
-                                <div className='flex gap-1 text-xs'>
-                                    <p className='font-semibold'>کلاس:</p>
-                                    <p>11</p>
-                                </div>
-                            </div>
-
-                            <DButton
-                                className='mt-4'
-                                leftSection={<IconUser className='shrink-0' />}
-                                color='#e31102'
-                                variant='outline'
-                            >
-                                خروج از حساب کاربری
-                            </DButton>
-                        </div>
+                        <DButton
+                            className='mt-4'
+                            leftSection={<IconUser className='shrink-0' />}
+                            color='#e31102'
+                            variant='outline'
+                        >
+                            خروج از حساب کاربری
+                        </DButton>
                     </div>
 
                     <hr />
