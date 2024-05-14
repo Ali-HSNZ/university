@@ -12,7 +12,7 @@ const TanstackQueryProvider = ({ children }: PropsWithChildren) => {
                         refetchOnWindowFocus: false,
                         refetchOnReconnect: false,
                         //set stale time to 5 minutes
-                        staleTime: 5 * 60 * 60 * 1000,
+                        staleTime: 0,
                     },
                 },
             })

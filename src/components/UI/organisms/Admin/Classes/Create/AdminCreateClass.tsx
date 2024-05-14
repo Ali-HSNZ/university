@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import TimePicker from 'react-multi-date-picker/plugins/time_picker'
 import { toast } from 'react-toastify'
@@ -43,15 +42,10 @@ const AdminCreateClass = () => {
 
     const queryClient = useQueryClient()
 
-    useEffect(() => {
-        queryClient.invalidateQueries({
-            queryKey: [QueryKeys.ClassValidLessons],
-        })
-    }, [queryClient])
-
     const { isFetching, data } = useQuery<TClassValidLessonListType[]>({
         queryKey: [QueryKeys.ClassValidLessons],
         queryFn: getClassValidLessonsListFn,
+        staleTime: 0,
     })
 
     const { isPending, mutate } = useMutation({

@@ -29,6 +29,7 @@ const AdminCreateTeacher = () => {
         formState: { errors },
     } = useForm<TCreateTeacherForm>({
         defaultValues: {
+            birthDay: '',
             address: '',
             education: '',
             first_name: '',

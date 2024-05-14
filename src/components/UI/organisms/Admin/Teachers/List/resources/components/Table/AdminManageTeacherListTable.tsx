@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { type FC, useState } from 'react'
 import Link from 'next/link'
 import { toast } from 'react-toastify'
 import { Menu, Modal } from '@mantine/core'
@@ -30,6 +30,8 @@ interface ITabelDataType extends TTeachersListFnType {
 
 const Table: FC<IAdminManageTeacherListTableProps> = ({ data }) => {
     const [opened, { open, close }] = useDisclosure(false)
+
+    const [rowDetail, setRowDetail] = useState<TTeachersListFnType>()
 
     const columnHelper = createColumnHelper<ITabelDataType>()
 
@@ -110,7 +112,13 @@ const Table: FC<IAdminManageTeacherListTableProps> = ({ data }) => {
                                 ویرایش پروفایل
                             </Menu.Item>
 
-                            <Menu.Item onClick={open} leftSection={<IconPlus size={19} />}>
+                            <Menu.Item
+                                onClick={() => {
+                                    open()
+                                    setRowDetail(cell.row.original)
+                                }}
+                                leftSection={<IconPlus size={19} />}
+                            >
                                 تخصیص کلاس
                             </Menu.Item>
 
@@ -151,9 +159,10 @@ const Table: FC<IAdminManageTeacherListTableProps> = ({ data }) => {
 
     return (
         <>
-            <Modal opened={opened} title='تخصیص کلاس به استاد رضا اکبری' onClose={close}>
-                <ClassAssignment close={close} />
+            <Modal opened={opened} centered title='تخصیص کلاس' onClose={close}>
+                <ClassAssignment rowDetail={rowDetail} close={close} />
             </Modal>
+
             <DTable data={table} minWidth={750} />
         </>
     )

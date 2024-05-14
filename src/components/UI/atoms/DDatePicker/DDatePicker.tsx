@@ -8,7 +8,10 @@ import { type TCriticalAny } from '@core/types/critical-any'
 import { type IDatePickerProps } from './resources'
 
 const DDatePicker = forwardRef<DatePickerProps, IDatePickerProps>(
-    ({ withAsterisk, label, calendarPosition, minDate, onChange, maxDate, ContainerClass, ...res }, ref) => {
+    (
+        { withAsterisk, editable = false, label, calendarPosition, minDate, onChange, maxDate, ContainerClass, ...res },
+        ref
+    ) => {
         return (
             <div className={`relative w-full ${ContainerClass}`}>
                 {label && (
@@ -20,7 +23,7 @@ const DDatePicker = forwardRef<DatePickerProps, IDatePickerProps>(
                 <DatePicker
                     ref={ref as MutableRefObject<TCriticalAny> | undefined}
                     portal
-                    editable={false}
+                    editable={editable}
                     calendar={persian}
                     locale={persianFa}
                     calendarPosition={calendarPosition}

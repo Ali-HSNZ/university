@@ -6,8 +6,8 @@ export const metadata: Metadata = {
     title: 'سامانه دانشجویی | پروفایل کاربری استاد',
 }
 
-const page = () => {
-    return <AdminTeacherProfileTemplate />
+const page = ({ params }: { params: { teacherId: string } }) => {
+    return <AdminTeacherProfileTemplate teacherId={params.teacherId} />
 }
 
 export default page
