@@ -1,12 +1,14 @@
-import axios, { AxiosError } from 'axios'
+import { AxiosError } from 'axios'
 
 import { baseApiUrl } from '@api/base-api-url'
+
+import { Http } from '@core/services/interceptor'
 
 const getAssignmentClassTimeListFn = async (classId: string, dayCode: string) => {
     try {
         const baseUrl = baseApiUrl()
 
-        const response = await axios.get(
+        const response = await Http.get(
             `${baseUrl}admin-teacher/assignment-class/lesson/${classId}/day/${dayCode}/list`
         )
         return response.data.data
