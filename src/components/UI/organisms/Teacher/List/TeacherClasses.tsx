@@ -2,20 +2,32 @@
 import { useMemo } from 'react'
 import { Menu } from '@mantine/core'
 import { IconDownload } from '@tabler/icons-react'
+import { useQuery } from '@tanstack/react-query'
+
+import { EmptyBoundary } from '@partials/boundaries/EmptyBoundary'
+import { DFetchingContainer } from '@partials/container/DFetchingContainer'
 
 import { DButton } from '@atoms/DButton'
 
+import { getTeacherClassesListFn } from '@api/get-teacher-classes-list'
+
+import { QueryKeys } from '@core/enums/query-keys'
+import { type TTeacherClassesListFnType } from '@core/types/data/teacher-class-list'
 import { exportToPDF } from '@core/utils/common/export-to-pdf'
 import { useExportTable } from '@core/utils/hooks/use-export-table'
 
 import { TeacherClassesTable } from './resources'
-import { STATIC_TABLE_DATA } from './resources/components/Table/resources'
 import tableDataGenerator from './resources/utils/table-generator.utils'
 
 const TeacherClasses = () => {
+    const { isFetching, isError, isSuccess, data } = useQuery<TTeacherClassesListFnType[]>({
+        queryKey: [QueryKeys.TeacherClassesList],
+        queryFn: () => getTeacherClassesListFn(),
+    })
+
     const tableData = useMemo(() => {
-        return tableDataGenerator(STATIC_TABLE_DATA)
-    }, [])
+        if (data) return tableDataGenerator(data)
+    }, [data])
 
     const { onDownloadExcel } = useExportTable()
 
@@ -52,8 +64,14 @@ const TeacherClasses = () => {
                     </Menu.Dropdown>
                 </Menu>
             </div>
-
-            <TeacherClassesTable />
+            <DFetchingContainer
+                isError={isError}
+                isFetching={isFetching}
+                isSuccess={isSuccess}
+                emptyBoundary={data?.length === 0 && <EmptyBoundary />}
+            >
+                <TeacherClassesTable data={data as TTeacherClassesListFnType[]} />
+            </DFetchingContainer>
         </div>
     )
 }

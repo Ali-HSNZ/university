@@ -1,3 +1,3 @@
-import getTeacherProfileFn from './get-teacher-profile.api'
+import getTeacherProfileFn from './get-profile-info.api'
 
 export { getTeacherProfileFn }

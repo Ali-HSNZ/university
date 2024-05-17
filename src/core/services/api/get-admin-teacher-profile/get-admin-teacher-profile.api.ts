@@ -1,11 +1,13 @@
-import axios, { AxiosError } from 'axios'
+import { AxiosError } from 'axios'
 
 import { baseApiUrl } from '@api/base-api-url'
 
-const getTeacherProfileFn = async (teacherId: string) => {
+import { Http } from '@core/services/interceptor'
+
+const getAdminTeacherProfileFn = async (teacherId: string) => {
     try {
         const baseUrl = baseApiUrl()
-        const response = await axios.get(`${baseUrl}admin-teacher/${teacherId}/info`)
+        const response = await Http.get(`${baseUrl}admin-teacher/${teacherId}/info`)
         return response.data.data
     } catch (error) {
         if (error instanceof AxiosError) return Promise.reject(error.response?.data || error)
@@ -13,4 +15,4 @@ const getTeacherProfileFn = async (teacherId: string) => {
     }
 }
 
-export default getTeacherProfileFn
+export default getAdminTeacherProfileFn
