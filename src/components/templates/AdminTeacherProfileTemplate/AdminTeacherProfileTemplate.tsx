@@ -14,19 +14,19 @@ import { DButton } from '@atoms/DButton'
 import { DSelect } from '@atoms/DSelect'
 import { DTextInput } from '@atoms/DTextInput'
 
-import { getTeacherProfileFn } from '@api/get-teacher-profile'
+import { getAdminTeacherProfileFn } from '@api/get-admin-teacher-profile'
 import { updateTeacherMutationFn } from '@api/update-teacher'
 
 import { QueryKeys } from '@core/enums/query-keys'
 import { type TCriticalAny } from '@core/types/critical-any'
-import { type TTeacherProfileInfoTypes } from '@core/types/data/teacher-profile-info'
+import { type TAdminTeacherProfileInfoTypes } from '@core/types/data/teacher-profile-info'
 import { type TUpdateTeacherForm } from '@core/types/forms-schema/update-teacher-profile-form'
 import { updateTeacherFormSchema } from '@core/utils/validations/update-teacher-profile'
 
 const AdminTeacherProfileTemplate = ({ teacherId }: { teacherId: string }) => {
-    const { isFetching, isError, isSuccess, data } = useQuery<TTeacherProfileInfoTypes>({
-        queryKey: [QueryKeys.TeacherProfileInfo],
-        queryFn: () => getTeacherProfileFn(teacherId),
+    const { isFetching, isError, isSuccess, data } = useQuery<TAdminTeacherProfileInfoTypes>({
+        queryKey: [QueryKeys.AdminTeacherProfileInfo],
+        queryFn: () => getAdminTeacherProfileFn(teacherId),
     })
 
     const {

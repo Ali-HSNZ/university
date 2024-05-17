@@ -1,3 +1,3 @@
-import type TTeacherProfileInfoTypes from './teacher-profile-info.types'
+import type TAdminTeacherProfileInfoTypes from './teacher-profile-info.types'
 
-export type { TTeacherProfileInfoTypes }
+export type { TAdminTeacherProfileInfoTypes }

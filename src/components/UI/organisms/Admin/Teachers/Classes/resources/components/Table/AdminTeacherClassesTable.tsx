@@ -34,7 +34,7 @@ const Table: FC<IAdminTeacherClassesTableProps> = ({ data, teacher_code }) => {
         onSuccess: (res: IAuthMutationFnProps) => {
             toast.info(res?.message)
             queryClient.invalidateQueries({
-                queryKey: [QueryKeys.TeacherClassesList],
+                queryKey: [QueryKeys.AdminTeacherClassesList],
             })
             queryClient.invalidateQueries({
                 queryKey: [QueryKeys.TeachersList],

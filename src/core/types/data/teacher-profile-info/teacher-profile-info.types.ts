@@ -1,4 +1,4 @@
-type TTeacherProfileInfoTypes = {
+type TAdminTeacherProfileInfoTypes = {
     userId: string
     first_name: string
     last_name: string
@@ -15,4 +15,4 @@ type TTeacherProfileInfoTypes = {
     token: string
 }
 
-export default TTeacherProfileInfoTypes
+export default TAdminTeacherProfileInfoTypes

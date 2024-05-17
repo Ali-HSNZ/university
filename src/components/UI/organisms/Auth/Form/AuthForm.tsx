@@ -40,7 +40,8 @@ const AuthForm = () => {
                 sameSite: 'Strict',
                 expires: 24 * 60 * 60 * 1000,
             })
-            push(`/${res.data.userType}`)
+
+            push(`/${res.data.userType === 'admin' ? res.data.userType + '/teachers' : res.data.userType}`)
         },
         onError: (err: IAuthMutationFnProps) => {
             toast.error(err.message)

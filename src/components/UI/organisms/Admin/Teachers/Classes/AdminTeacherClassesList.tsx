@@ -9,7 +9,7 @@ import { DFetchingContainer } from '@partials/container/DFetchingContainer'
 
 import { DButton } from '@atoms/DButton'
 
-import { getTeacherClassesListFn } from '@api/get-teacher-classes-list'
+import { getAdminTeacherClassesListFn } from '@api/get-admin-teacher-classes-list'
 
 import { QueryKeys } from '@core/enums/query-keys'
 import { type TTeacherClassesListType, type TTeacherSingleClassType } from '@core/types/data/teacher-classes-list'
@@ -25,8 +25,8 @@ const AdminTeacherClassesList = () => {
     const dynamicTeacherId: string = path?.teacherId ? String(path.teacherId) : ''
 
     const { isFetching, isError, isSuccess, data } = useQuery<TTeacherClassesListType>({
-        queryKey: [QueryKeys.TeacherClassesList, { dynamicTeacherId }],
-        queryFn: () => getTeacherClassesListFn(dynamicTeacherId),
+        queryKey: [QueryKeys.AdminTeacherClassesList, { dynamicTeacherId }],
+        queryFn: () => getAdminTeacherClassesListFn(dynamicTeacherId),
     })
 
     const tableData = useMemo(() => {
