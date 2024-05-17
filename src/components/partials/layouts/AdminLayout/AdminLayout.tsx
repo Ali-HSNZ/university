@@ -1,4 +1,5 @@
 import { type FC, type PropsWithChildren } from 'react'
+import { useRouter } from 'next/navigation'
 import { Avatar } from '@mantine/core'
 import { IconUser } from '@tabler/icons-react'
 
@@ -6,7 +7,16 @@ import { DNavigationTab } from '@molecules/DNavigationTab'
 
 import { DButton } from '@atoms/DButton'
 
+import { removeCookieStorageItem } from '@core/services/storage'
+
 const AdminLayout: FC<PropsWithChildren> = ({ children }) => {
+    const { push } = useRouter()
+
+    const logoutHandler = () => {
+        removeCookieStorageItem('Secure-KY')
+        push('/auth')
+    }
+
     return (
         <>
             <section>
@@ -31,6 +41,7 @@ const AdminLayout: FC<PropsWithChildren> = ({ children }) => {
                             leftSection={<IconUser className='shrink-0' />}
                             color='#e31102'
                             variant='outline'
+                            onClick={logoutHandler}
                         >
                             خروج از حساب کاربری
                         </DButton>

@@ -1,12 +1,32 @@
 import { type FC, type PropsWithChildren } from 'react'
+import { useRouter } from 'next/navigation'
 import { Avatar } from '@mantine/core'
 import { IconUser } from '@tabler/icons-react'
+import { useQuery } from '@tanstack/react-query'
 
 import { DNavigationTab } from '@molecules/DNavigationTab'
 
 import { DButton } from '@atoms/DButton'
 
+import { getTeacherProfileFn } from '@api/get-teacher-profile'
+
+import { QueryKeys } from '@core/enums/query-keys'
+import { removeCookieStorageItem } from '@core/services/storage'
+import { type TTeacherProfileFnType } from '@core/types/data/teacher-profile'
+
 const TeacherLayout: FC<PropsWithChildren> = ({ children }) => {
+    const { push } = useRouter()
+
+    const logoutHandler = () => {
+        removeCookieStorageItem('Secure-KY')
+        push('/auth')
+    }
+
+    const { data } = useQuery<TTeacherProfileFnType>({
+        queryKey: [QueryKeys.TeacherProfile],
+        queryFn: () => getTeacherProfileFn(),
+    })
+
     return (
         <>
             <section>
@@ -19,8 +39,10 @@ const TeacherLayout: FC<PropsWithChildren> = ({ children }) => {
                             <div>
                                 <div>
                                     <div className='flex gap-1'>
-                                        <p className='font-semibold text-xl'>علی حسن زاده</p>
-                                        <p className='text-xs'>(48684654684)</p>
+                                        <p className='font-semibold text-xl'>
+                                            {data?.first_name} {data?.last_name}
+                                        </p>
+                                        <p className='text-xs'>({data?.national_code})</p>
                                     </div>
                                     <p className='text-xs'>مدیریت کلاس و خروجی Excel , PDF</p>
                                 </div>
@@ -28,18 +50,12 @@ const TeacherLayout: FC<PropsWithChildren> = ({ children }) => {
                         </div>
 
                         <div className='flex flex-col justify-between'>
-                            <div className='flex flex-col gap-1'>
-                                <div className='flex gap-1 text-xs'>
-                                    <p className='font-semibold'>کلاس:</p>
-                                    <p>20</p>
-                                </div>
-                                <div className='flex gap-1 text-xs'>
-                                    <p className='font-semibold'>آخرین مدرک تحصیلی:</p>
-                                    <p>فوق لیسانس کامپیوتر</p>
-                                </div>
-                            </div>
-
-                            <DButton leftSection={<IconUser className='shrink-0' />} color='#e31102' variant='outline'>
+                            <DButton
+                                onClick={logoutHandler}
+                                leftSection={<IconUser className='shrink-0' />}
+                                color='#e31102'
+                                variant='outline'
+                            >
                                 خروج از حساب کاربری
                             </DButton>
                         </div>
@@ -47,12 +63,7 @@ const TeacherLayout: FC<PropsWithChildren> = ({ children }) => {
 
                     <hr />
 
-                    <DNavigationTab
-                        navigationItems={[
-                            { title: 'لیست کلاس‌ها', href: '/teacher' },
-                            { title: 'پروفایل کاربری', href: '/teacher/me' },
-                        ]}
-                    />
+                    <DNavigationTab navigationItems={[{ title: 'لیست کلاس‌ها', href: '/teacher' }]} />
                 </div>
                 <div className='p-6'>{children}</div>
             </section>
