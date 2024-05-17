@@ -10,7 +10,6 @@ import { DPreviewFileCard, FileIcon, type IDDropzoneProps } from './resources'
 const DDropzone: FC<IDDropzoneProps> = ({
     label = null,
     withAsterisk,
-    cols = 1,
     handleUpload,
     files,
     setFiles,
@@ -48,7 +47,7 @@ const DDropzone: FC<IDDropzoneProps> = ({
                 )}
                 {/* Rendering mantine dropzone */}
                 <Dropzone
-                    className='h-full border border-blue-200 hover:border-blue-200 bg-blue-50 focus-within:border-blue-200 flex items-center justify-start p-6 duration-500 rounded-lg'
+                    className='h-full border cursor-pointer border-blue-200 hover:border-blue-200 bg-blue-50 focus-within:border-blue-200 flex items-center justify-start p-6 transition-all duration-500 rounded-lg'
                     onDrop={addFileHandler}
                     maxSize={maxSize}
                     accept={accept}
@@ -61,22 +60,33 @@ const DDropzone: FC<IDDropzoneProps> = ({
                     }
                     {...rest}
                 >
-                    <div className='h-full flex flex-col items-start justify-center'>
+                    <div className='h-full duration-500 transition-all flex flex-col items-start justify-center'>
                         <Dropzone.Accept>
-                            <IconUpload size='2.7rem' stroke={1.5} className='text-blue-500' />
+                            <div className='w-full mb-6 p-4 rounded-lg bg-blue-100 border border-blue-300 flex justify-center items-center'>
+                                <IconUpload size='2rem' stroke={1.5} className='text-blue-700' />
+                            </div>
                         </Dropzone.Accept>
                         <Dropzone.Reject>
-                            <IconX size='2.7rem' stroke={1.5} color='red' />
+                            <div className='w-full mb-6 p-4 rounded-lg gap-2 bg-red-100 border border-red-300 flex justify-center items-center'>
+                                <IconX size='2rem' stroke={1.5} color='red' />
+                                <p className='text-sm text text-red-600 font-semibold'>فایل مورد پذیرش نیست</p>
+                            </div>
                         </Dropzone.Reject>
-                        <div className='flex flex-row items-center gap-x-3'>
-                            <div className='flex-shrink-0'>
+                        <div className='flex flex-row select-none items-center gap-x-3'>
+                            <div className='shrink-0'>
                                 <FileIcon />
                             </div>
                             <span className='text-black text-sm font-medium text-right'>
                                 فایل ها را اینجا رها کنید یا برای آپلود کلیک کنید
-                                <div className='text-gray-500 text-xs mt-2 font-regular'>
-                                    فرمت های پذیرفته شده: {accept?.join(', ')} | حداکثر حجم فایل:{' '}
-                                    {Intl.NumberFormat('en').format(Math.round(Number(maxSize) / 1000))}KB
+                                <div className='text-gray-500 text-xs mt-2 leading-6 font-regular'>
+                                    فرمت های پذیرفته شده: {accept?.join(', ')}
+                                </div>
+                                <div className='text-gray-500 text-xs mt-2 leading-6 flex gap-1 font-regular'>
+                                    <p> حداکثر حجم فایل:</p>
+                                    <div className='flex gap-0.5'>
+                                        KB
+                                        <p>{Intl.NumberFormat('en').format(Math.round(Number(maxSize) / 1000))}</p>
+                                    </div>
                                 </div>
                             </span>
                         </div>
@@ -85,17 +95,7 @@ const DDropzone: FC<IDDropzoneProps> = ({
             </div>
             {/* Preview the files that selected */}
             {files.length > 0 && (
-                <div
-                    className={`grid gap-4 ${
-                        cols === 1
-                            ? 'grid-cols-1'
-                            : cols === 2
-                              ? 'grid-cols-1 md:grid-cols-2'
-                              : cols === 3
-                                ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
-                                : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
-                    }`}
-                >
+                <div className={``}>
                     {files &&
                         files.map((file, index) => (
                             <DPreviewFileCard
