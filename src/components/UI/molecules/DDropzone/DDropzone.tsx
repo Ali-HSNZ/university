@@ -77,10 +77,7 @@ const DDropzone: FC<IDDropzoneProps> = ({
                                 <FileIcon />
                             </div>
                             <span className='text-black text-sm font-medium text-right'>
-                                فایل ها را اینجا رها کنید یا برای آپلود کلیک کنید
-                                <div className='text-gray-500 text-xs mt-2 leading-6 font-regular'>
-                                    فرمت های پذیرفته شده: {accept?.join(', ')}
-                                </div>
+                                فایل را اینجا رها کنید یا برای آپلود کلیک کنید
                                 <div className='text-gray-500 text-xs mt-2 leading-6 flex gap-1 font-regular'>
                                     <p> حداکثر حجم فایل:</p>
                                     <div className='flex gap-0.5'>

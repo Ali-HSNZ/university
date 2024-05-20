@@ -11,11 +11,12 @@ const DPreviewFileCard: FC<IDPreviewFileCardProps> = ({ file, removeFileHandler 
         <div className='flex items-center justify-between p-3 border border-[#DDDDDD] rounded-lg'>
             <div className='flex flex-row items-center gap-3'>
                 <IconFile />
-                <div className='flex flex-row flex-wrap gap-3'>
+                <div className='flex flex-col flex-wrap gap-1'>
                     <span className='text-sm text-gray-700 font-medium'>{file.name}</span>
-                    <span className='text-xs text-gray-500 font-medium pt-1'>
-                        {Math.round(file.size / 1000).toLocaleString()} kb
-                    </span>
+                    <div className='text-sm flex gap-x-0.5 text-gray-700 font-iran-yekan'>
+                        <p>KB</p>
+                        <p>{Math.round(file.size / 1000).toLocaleString()}</p>
+                    </div>
                 </div>
             </div>
             <div className='flex items-center'>

@@ -186,7 +186,7 @@ const AdminCreateTeacher = () => {
                         />
                     </div>
                     <div className='flex gap-x-6 justify-end'>
-                        <DButton onClick={open} type='button' variant='outline' leftSection={<IconDatabaseImport />}>
+                        <DButton onClick={open} type='button' variant='subtle' leftSection={<IconDatabaseImport />}>
                             آپلود Excel
                         </DButton>
                         <DButton loading={isPending} type='submit' leftSection={<IconCheck />}>
