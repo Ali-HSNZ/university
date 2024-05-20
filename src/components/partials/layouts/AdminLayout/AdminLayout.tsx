@@ -54,7 +54,7 @@ const AdminLayout: FC<PropsWithChildren> = ({ children }) => {
                             { title: 'اساتید', href: '/admin/teachers' },
                             { title: 'دروس', href: '/admin/lessons' },
                             { title: 'کلاس', href: '/admin/classes' },
-                            { title: 'پروفایل کاربری', href: '/admin' },
+                            { title: 'فایل‌ها', href: '/admin/files' },
                         ]}
                     />
                 </div>

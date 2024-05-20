@@ -11,7 +11,7 @@ import { DButton } from '@atoms/DButton'
 import { getLessonsListFn } from '@api/get-lessons-list'
 
 import { QueryKeys } from '@core/enums/query-keys'
-import type TLessonListFnType from '@core/types/data/lessons-list/lessons-list.type'
+import { type TLessonListFnType } from '@core/types/data/lessons-list'
 import { exportToPDF } from '@core/utils/common/export-to-pdf'
 import { useExportTable } from '@core/utils/hooks/use-export-table'
 
