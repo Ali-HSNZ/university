@@ -1,7 +1,7 @@
 import { type TFilesListFnType } from '@core/types/data/files-list'
 
-interface IAdminManageFilesListTableProps {
+interface IAdminTeachersFilesListTableProps {
     data: TFilesListFnType[]
 }
 
-export default IAdminManageFilesListTableProps
+export default IAdminTeachersFilesListTableProps

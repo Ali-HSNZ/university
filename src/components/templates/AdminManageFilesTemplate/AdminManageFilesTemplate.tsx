@@ -1,12 +1,13 @@
 import React from 'react'
 
-import { AdminManageFilesList } from '@organisms/Admin/Files'
+import { AdminLessonsFilesList, AdminTeachersFilesListTable } from '@organisms/Admin/Files'
 
 const AdminManageFilesTemplate = () => {
     return (
-        <div>
-            <AdminManageFilesList />
-        </div>
+        <section className='flex flex-col gap-6'>
+            <AdminTeachersFilesListTable />
+            <AdminLessonsFilesList />
+        </section>
     )
 }
 

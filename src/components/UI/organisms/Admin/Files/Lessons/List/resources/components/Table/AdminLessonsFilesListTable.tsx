@@ -11,9 +11,9 @@ import { DActionIcon } from '@atoms/DActionIcon'
 import { type TCriticalAny } from '@core/types/critical-any'
 import { type TAdminTeacherFilesListTableType } from '@core/types/table/adminTeacherFIles'
 
-import { type IAdminManageFilesListTableProps } from './resources'
+import { type IAdminLessonsFilesListTableProps } from './resources'
 
-const Table: FC<IAdminManageFilesListTableProps> = ({ data }) => {
+const Table: FC<IAdminLessonsFilesListTableProps> = ({ data }) => {
     const columnHelper = createColumnHelper<TAdminTeacherFilesListTableType>()
 
     const columns: TCriticalAny[] = [

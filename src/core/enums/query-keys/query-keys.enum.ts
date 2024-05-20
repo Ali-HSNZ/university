@@ -12,6 +12,7 @@ enum QueryKeys {
     TeacherClassesList = 'teacher-classes-list',
     TeacherProfile = 'teacher-profile',
     AdminTeacherFiles = 'admin-teacher-files',
+    AdminLessonsFiles = 'admin-lessons-files',
 }
 
 export default QueryKeys

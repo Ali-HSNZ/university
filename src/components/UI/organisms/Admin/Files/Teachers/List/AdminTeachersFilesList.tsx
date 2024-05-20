@@ -8,9 +8,9 @@ import { getAdminTeachersFilesListFn } from '@api/get-admin-teachers-files'
 import { QueryKeys } from '@core/enums/query-keys'
 import { type TFilesListFnType } from '@core/types/data/files-list'
 
-import { AdminManageFilesListTable } from './resources'
+import { AdminTeachersFilesListTable } from './resources'
 
-const AdminManageFilesList = () => {
+const AdminTeachersFilesList = () => {
     const { isFetching, isError, isSuccess, data } = useQuery<TFilesListFnType[]>({
         queryKey: [QueryKeys.AdminTeacherFiles],
         queryFn: () => getAdminTeachersFilesListFn(),
@@ -27,10 +27,10 @@ const AdminManageFilesList = () => {
                 isSuccess={isSuccess}
                 emptyBoundary={data?.length === 0 && <EmptyBoundary />}
             >
-                <AdminManageFilesListTable data={data as TFilesListFnType[]} />
+                <AdminTeachersFilesListTable data={data as TFilesListFnType[]} />
             </DFetchingContainer>
         </section>
     )
 }
 
-export default AdminManageFilesList
+export default AdminTeachersFilesList
