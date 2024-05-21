@@ -3,23 +3,23 @@ import { useQuery } from '@tanstack/react-query'
 import { EmptyBoundary } from '@partials/boundaries/EmptyBoundary'
 import { DFetchingContainer } from '@partials/container/DFetchingContainer'
 
-import { getAdminLessonsFilesListFn } from '@api/get-admin-lessons-files'
+import { getAdminClassesFilesListFn } from '@api/get-admin-classes-files'
 
 import { QueryKeys } from '@core/enums/query-keys'
 import { type TFilesListFnType } from '@core/types/data/files-list'
 
-import { AdminLessonsFilesListTable } from './resources'
+import { AdminClassesFilesListTable } from './resources'
 
-const AdminLessonsFilesList = () => {
+const AdminClassesFilesList = () => {
     const { isFetching, isError, isSuccess, data } = useQuery<TFilesListFnType[]>({
-        queryKey: [QueryKeys.AdminLessonsFiles],
-        queryFn: () => getAdminLessonsFilesListFn(),
+        queryKey: [QueryKeys.AdminClassesFiles],
+        queryFn: () => getAdminClassesFilesListFn(),
     })
 
     return (
         <section className='flex flex-col gap-6'>
             <div className='w-full flex justify-between items-center'>
-                <p>دروس</p>
+                <p>کلاس ها</p>
             </div>
             <DFetchingContainer
                 isError={isError}
@@ -27,10 +27,10 @@ const AdminLessonsFilesList = () => {
                 isSuccess={isSuccess}
                 emptyBoundary={data?.length === 0 && <EmptyBoundary />}
             >
-                <AdminLessonsFilesListTable data={data as TFilesListFnType[]} />
+                <AdminClassesFilesListTable data={data as TFilesListFnType[]} />
             </DFetchingContainer>
         </section>
     )
 }
 
-export default AdminLessonsFilesList
+export default AdminClassesFilesList

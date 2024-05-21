@@ -1,5 +1,6 @@
 'use client'
-import AdminLessonsFilesList from './Lessons/List/AdminLessonsFilesList'
+import AdminClassesFilesListTable from './Classes/List/AdminClassesFilesList'
+import AdminLessonsFilesListTable from './Lessons/List/AdminLessonsFilesList'
 import AdminTeachersFilesListTable from './Teachers/List/AdminTeachersFilesList'
 
-export { AdminTeachersFilesListTable, AdminLessonsFilesList }
+export { AdminTeachersFilesListTable, AdminLessonsFilesListTable, AdminClassesFilesListTable }

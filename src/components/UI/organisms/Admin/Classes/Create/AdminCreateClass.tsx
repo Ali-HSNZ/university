@@ -1,14 +1,16 @@
 import { Controller, useForm } from 'react-hook-form'
 import TimePicker from 'react-multi-date-picker/plugins/time_picker'
 import { toast } from 'react-toastify'
+import { useDisclosure } from '@mantine/hooks'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { IconCheck } from '@tabler/icons-react'
+import { IconCheck, IconDatabaseImport } from '@tabler/icons-react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { DField } from '@molecules/DField'
 
 import { DButton } from '@atoms/DButton'
 import { DDatePicker } from '@atoms/DDatePicker'
+import { DModal } from '@atoms/DModal'
 import { DSelect } from '@atoms/DSelect'
 
 import { createClassMutationFn } from '@api/create-class'
@@ -21,7 +23,11 @@ import { type TClassValidLessonListType } from '@core/types/data/class-lessons-l
 import { type TCreateClassFormType } from '@core/types/forms-schema/create-class-form'
 import { createClassFormSchema } from '@core/utils/validations/create-class-form'
 
+import { AdminCreateClassUploadModal } from './resources'
+
 const AdminCreateClass = () => {
+    const [opened, { open, close }] = useDisclosure()
+
     const {
         control,
         handleSubmit,
@@ -76,131 +82,139 @@ const AdminCreateClass = () => {
     })
 
     return (
-        <section className='flex flex-col gap-y-6'>
-            <p>ثبت کلاس</p>
+        <>
+            <section className='flex flex-col gap-y-6'>
+                <p>ثبت کلاس</p>
 
-            <form
-                onSubmit={handleSubmit((formValues) => mutate(formValues))}
-                className='bg-white grid grid-cols-4 gap-6 p-6'
-            >
-                <Controller
-                    name='lesson_id'
-                    control={control}
-                    render={({ field }) => {
-                        return (
-                            <DField fieldName={field.name} fieldError={errors}>
-                                <DSelect
-                                    isLoading={isFetching}
-                                    data={data ?? []}
-                                    withAsterisk
-                                    label='نام درس'
-                                    {...field}
-                                />
-                            </DField>
-                        )
-                    }}
-                />
+                <form onSubmit={handleSubmit((formValue) => mutate(formValue))} className='bg-white  p-6'>
+                    <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-9'>
+                        <Controller
+                            name='lesson_id'
+                            control={control}
+                            render={({ field }) => {
+                                return (
+                                    <DField fieldName={field.name} fieldError={errors}>
+                                        <DSelect
+                                            isLoading={isFetching}
+                                            data={data ?? []}
+                                            withAsterisk
+                                            label='نام درس'
+                                            {...field}
+                                        />
+                                    </DField>
+                                )
+                            }}
+                        />
 
-                <Controller
-                    name='start_time'
-                    control={control}
-                    render={({ field }) => {
-                        return (
-                            <DField fieldName={field.name} fieldError={errors}>
-                                <DDatePicker
-                                    disableDayPicker
-                                    format='HH:mm'
-                                    plugins={[<TimePicker hideSeconds key={0} />]}
-                                    calendarPosition='bottom-right'
-                                    label='ساعت شروع کلاس'
-                                    withAsterisk
-                                    {...field}
-                                />
-                            </DField>
-                        )
-                    }}
-                />
+                        <Controller
+                            name='start_time'
+                            control={control}
+                            render={({ field }) => {
+                                return (
+                                    <DField fieldName={field.name} fieldError={errors}>
+                                        <DDatePicker
+                                            disableDayPicker
+                                            format='HH:mm'
+                                            plugins={[<TimePicker hideSeconds key={0} />]}
+                                            calendarPosition='bottom-right'
+                                            label='ساعت شروع کلاس'
+                                            withAsterisk
+                                            {...field}
+                                        />
+                                    </DField>
+                                )
+                            }}
+                        />
 
-                <Controller
-                    name='end_time'
-                    control={control}
-                    render={({ field }) => {
-                        return (
-                            <DField fieldName={field.name} fieldError={errors}>
-                                <DDatePicker
-                                    disableDayPicker
-                                    format='HH:mm'
-                                    plugins={[<TimePicker hideSeconds key={0} />]}
-                                    calendarPosition='bottom-right'
-                                    label='ساعت پایان کلاس'
-                                    withAsterisk
-                                    {...field}
-                                />
-                            </DField>
-                        )
-                    }}
-                />
+                        <Controller
+                            name='end_time'
+                            control={control}
+                            render={({ field }) => {
+                                return (
+                                    <DField fieldName={field.name} fieldError={errors}>
+                                        <DDatePicker
+                                            disableDayPicker
+                                            format='HH:mm'
+                                            plugins={[<TimePicker hideSeconds key={0} />]}
+                                            calendarPosition='bottom-right'
+                                            label='ساعت پایان کلاس'
+                                            withAsterisk
+                                            {...field}
+                                        />
+                                    </DField>
+                                )
+                            }}
+                        />
 
-                <Controller
-                    name='day'
-                    control={control}
-                    render={({ field }) => {
-                        return (
-                            <DField fieldName={field.name} fieldError={errors}>
-                                <DSelect
-                                    withAsterisk
-                                    label='روز برگزاری کلاس'
-                                    data={['شنبه', 'یک‌شنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه']}
-                                    {...field}
-                                />
-                            </DField>
-                        )
-                    }}
-                />
+                        <Controller
+                            name='day'
+                            control={control}
+                            render={({ field }) => {
+                                return (
+                                    <DField fieldName={field.name} fieldError={errors}>
+                                        <DSelect
+                                            withAsterisk
+                                            label='روز برگزاری کلاس'
+                                            data={['شنبه', 'یک‌شنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه']}
+                                            {...field}
+                                        />
+                                    </DField>
+                                )
+                            }}
+                        />
 
-                <Controller
-                    name='test_date'
-                    control={control}
-                    render={({ field }) => {
-                        return (
-                            <DField fieldName={field.name} fieldError={errors}>
-                                <DDatePicker
-                                    minDate={new Date()}
-                                    onOpenPickNewDate={false}
-                                    label='تاریخ آزمون'
-                                    {...field}
-                                />
-                            </DField>
-                        )
-                    }}
-                />
+                        <Controller
+                            name='test_date'
+                            control={control}
+                            render={({ field }) => {
+                                return (
+                                    <DField fieldName={field.name} fieldError={errors}>
+                                        <DDatePicker
+                                            minDate={new Date()}
+                                            onOpenPickNewDate={false}
+                                            label='تاریخ آزمون'
+                                            {...field}
+                                        />
+                                    </DField>
+                                )
+                            }}
+                        />
 
-                <Controller
-                    name='test_time'
-                    control={control}
-                    render={({ field }) => {
-                        return (
-                            <DField fieldName={field.name} fieldError={errors}>
-                                <DDatePicker
-                                    disableDayPicker
-                                    format='HH:mm'
-                                    plugins={[<TimePicker hideSeconds key={0} />]}
-                                    calendarPosition='bottom-right'
-                                    label='ساعت برگزاری آزمون'
-                                    {...field}
-                                />{' '}
-                            </DField>
-                        )
-                    }}
-                />
+                        <Controller
+                            name='test_time'
+                            control={control}
+                            render={({ field }) => {
+                                return (
+                                    <DField fieldName={field.name} fieldError={errors}>
+                                        <DDatePicker
+                                            disableDayPicker
+                                            format='HH:mm'
+                                            plugins={[<TimePicker hideSeconds key={0} />]}
+                                            calendarPosition='bottom-right'
+                                            label='ساعت برگزاری آزمون'
+                                            {...field}
+                                        />{' '}
+                                    </DField>
+                                )
+                            }}
+                        />
+                    </div>
 
-                <div className='col-span-4 flex justify-end'>
-                    <DButton loading={isPending} type='submit' leftSection={<IconCheck />}>
-                        ثبت
-                    </DButton>
-                </div>
-            </form>
-        </section>
+                    <div className='flex gap-x-6 justify-end'>
+                        <DButton onClick={open} type='button' variant='subtle' leftSection={<IconDatabaseImport />}>
+                            آپلود Excel
+                        </DButton>
+                        <DButton loading={isPending} type='submit' leftSection={<IconCheck />}>
+                            ثبت
+                        </DButton>
+                    </div>
+                </form>
+            </section>
+
+            <DModal opened={opened} title='آپلود فایل Excel' centered onClose={close}>
+                <AdminCreateClassUploadModal onClose={close} />
+            </DModal>
+        </>
     )
 }
 

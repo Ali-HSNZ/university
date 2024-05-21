@@ -19,7 +19,7 @@ const AdminTeachersFilesList = () => {
     return (
         <section className='flex flex-col gap-6'>
             <div className='w-full flex justify-between items-center'>
-                <p>لیست فایل های اساتید</p>
+                <p>اساتید</p>
             </div>
             <DFetchingContainer
                 isError={isError}
