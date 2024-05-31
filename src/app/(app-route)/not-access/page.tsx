@@ -1,11 +1,13 @@
-import React from 'react'
+import { type Metadata } from 'next'
+
+import { NotAccessTemplate } from '@templates/NotAccessTemplate'
+
+export const metadata: Metadata = {
+    title: 'سامانه دانشجویی | عدم دسترسی',
+}
 
 const page = () => {
-    return (
-        <div className='w-full h-screen flex justify-center items-center text-3xl  font-medium'>
-            <p className='bg-white p-10 shadow-xl rounded-lg border'>عدم دسترسی</p>
-        </div>
-    )
+    return <NotAccessTemplate />
 }
 
 export default page
