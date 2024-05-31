@@ -14,6 +14,7 @@ enum QueryKeys {
     AdminTeacherFiles = 'admin-teacher-files',
     AdminLessonsFiles = 'admin-lessons-files',
     AdminClassesFiles = 'admin-classes-files',
+    AdminPendingToAgreeFiles = 'admin-pending-to-agree',
 }
 
 export default QueryKeys

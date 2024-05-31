@@ -3,6 +3,7 @@ import React from 'react'
 import {
     AdminClassesFilesListTable,
     AdminLessonsFilesListTable,
+    AdminPendingToAgreeFilesList,
     AdminTeachersFilesListTable,
 } from '@organisms/Admin/Files'
 
@@ -12,6 +13,7 @@ const AdminManageFilesTemplate = () => {
             <AdminTeachersFilesListTable />
             <AdminLessonsFilesListTable />
             <AdminClassesFilesListTable />
+            <AdminPendingToAgreeFilesList />
         </section>
     )
 }
