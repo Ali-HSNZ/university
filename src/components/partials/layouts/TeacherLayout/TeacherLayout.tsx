@@ -1,12 +1,12 @@
 import { type FC, type PropsWithChildren } from 'react'
 import { useRouter } from 'next/navigation'
 import { Avatar } from '@mantine/core'
-import { IconUser } from '@tabler/icons-react'
+import { IconLogout } from '@tabler/icons-react'
 import { useQuery } from '@tanstack/react-query'
 
 import { DNavigationTab } from '@molecules/DNavigationTab'
 
-import { DButton } from '@atoms/DButton'
+import { DActionIcon } from '@atoms/DActionIcon'
 
 import { getTeacherProfileFn } from '@api/get-teacher-profile'
 
@@ -49,15 +49,17 @@ const TeacherLayout: FC<PropsWithChildren> = ({ children }) => {
                             </div>
                         </div>
 
-                        <div className='flex flex-col justify-between'>
-                            <DButton
-                                onClick={logoutHandler}
-                                leftSection={<IconUser className='shrink-0' />}
+                        <div>
+                            <DActionIcon
+                                size={'auto'}
+                                className='p-2'
                                 color='#e31102'
-                                variant='outline'
+                                variant='subtle'
+                                onClick={logoutHandler}
                             >
-                                خروج از حساب کاربری
-                            </DButton>
+                                <IconLogout className='shrink-0' />
+                                <p className='font-medium mr-1.5 hidden sm:inline text-sm'>خروج از حساب کاربری</p>
+                            </DActionIcon>
                         </div>
                     </div>
 

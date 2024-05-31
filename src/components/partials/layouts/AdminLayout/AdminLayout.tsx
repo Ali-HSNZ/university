@@ -1,11 +1,11 @@
 import { type FC, type PropsWithChildren } from 'react'
 import { useRouter } from 'next/navigation'
 import { Avatar } from '@mantine/core'
-import { IconUser } from '@tabler/icons-react'
+import { IconLogout } from '@tabler/icons-react'
 
 import { DNavigationTab } from '@molecules/DNavigationTab'
 
-import { DButton } from '@atoms/DButton'
+import { DActionIcon } from '@atoms/DActionIcon'
 
 import { removeCookieStorageItem } from '@core/services/storage'
 
@@ -36,15 +36,18 @@ const AdminLayout: FC<PropsWithChildren> = ({ children }) => {
                             </div>
                         </div>
 
-                        <DButton
-                            className='mt-4'
-                            leftSection={<IconUser className='shrink-0' />}
-                            color='#e31102'
-                            variant='outline'
-                            onClick={logoutHandler}
-                        >
-                            خروج از حساب کاربری
-                        </DButton>
+                        <div>
+                            <DActionIcon
+                                size={'auto'}
+                                className='p-2'
+                                color='#e31102'
+                                variant='subtle'
+                                onClick={logoutHandler}
+                            >
+                                <IconLogout className='shrink-0' />
+                                <p className='font-medium mr-1.5 hidden sm:inline text-sm'>خروج از حساب کاربری</p>
+                            </DActionIcon>
+                        </div>
                     </div>
 
                     <hr />
@@ -54,7 +57,7 @@ const AdminLayout: FC<PropsWithChildren> = ({ children }) => {
                             { title: 'اساتید', href: '/admin/teachers' },
                             { title: 'دروس', href: '/admin/lessons' },
                             { title: 'کلاس', href: '/admin/classes' },
-                            { title: 'فایل‌ها', href: '/admin/files' },
+                            { title: 'مدیریت فایل‌ها', href: '/admin/files' },
                         ]}
                     />
                 </div>
