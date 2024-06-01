@@ -17,7 +17,7 @@ import { createTeacherMutationFn } from '@api/create-teacher'
 
 import { QueryKeys } from '@core/enums/query-keys'
 import { type TCriticalAny } from '@core/types/critical-any'
-import { type IAuthMutationFnProps } from '@core/types/data/auth'
+import { type IBaseMutationFnProps } from '@core/types/data/base-response'
 import { type TCreateTeacherForm } from '@core/types/forms-schema/create-teacher-form'
 import { createTeacherFormSchema } from '@core/utils/validations/create-teacher-form'
 
@@ -51,7 +51,7 @@ const AdminCreateTeacher = () => {
 
     const { isPending, mutate } = useMutation({
         mutationFn: createTeacherMutationFn,
-        onSuccess: (res: IAuthMutationFnProps) => {
+        onSuccess: (res: IBaseMutationFnProps) => {
             toast.success(res.message)
             reset()
             setValue('education', null as TCriticalAny)
@@ -77,8 +77,11 @@ const AdminCreateTeacher = () => {
             <section className='flex flex-col gap-6'>
                 <p>ثبت استاد</p>
 
-                <form onSubmit={handleSubmit((formValue) => mutate(formValue))} className='bg-white  p-6'>
-                    <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-9'>
+                <form
+                    onSubmit={handleSubmit((formValue) => mutate(formValue))}
+                    className='bg-white flex flex-col gap-6 p-6'
+                >
+                    <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
                         <Controller
                             name='first_name'
                             control={control}

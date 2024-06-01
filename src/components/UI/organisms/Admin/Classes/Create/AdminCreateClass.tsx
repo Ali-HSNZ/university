@@ -18,7 +18,7 @@ import { getClassValidLessonsListFn } from '@api/get-class-lessons-list'
 
 import { QueryKeys } from '@core/enums/query-keys'
 import { type TCriticalAny } from '@core/types/critical-any'
-import { type IAuthMutationFnProps } from '@core/types/data/auth'
+import { type IBaseMutationFnProps } from '@core/types/data/base-response'
 import { type TClassValidLessonListType } from '@core/types/data/class-lessons-list'
 import { type TCreateClassFormType } from '@core/types/forms-schema/create-class-form'
 import { createClassFormSchema } from '@core/utils/validations/create-class-form'
@@ -56,7 +56,7 @@ const AdminCreateClass = () => {
 
     const { isPending, mutate } = useMutation({
         mutationFn: createClassMutationFn,
-        onSuccess: (res: IAuthMutationFnProps) => {
+        onSuccess: (res: IBaseMutationFnProps) => {
             toast.success(res.message)
             // refetch classes list
             queryClient.invalidateQueries({
@@ -83,11 +83,14 @@ const AdminCreateClass = () => {
 
     return (
         <>
-            <section className='flex flex-col gap-y-6'>
+            <section className='flex flex-col gap-6'>
                 <p>ثبت کلاس</p>
 
-                <form onSubmit={handleSubmit((formValue) => mutate(formValue))} className='bg-white  p-6'>
-                    <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-9'>
+                <form
+                    onSubmit={handleSubmit((formValue) => mutate(formValue))}
+                    className='bg-white flex flex-col gap-6 p-6'
+                >
+                    <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
                         <Controller
                             name='lesson_id'
                             control={control}

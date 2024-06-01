@@ -87,7 +87,7 @@ const AdminTeacherClassesList = () => {
                 emptyBoundary={data?.classes?.length === 0 && <EmptyBoundary />}
             >
                 <AdminTeacherClassesTable
-                    teacher_code={data?.teacher.teacher_code as number}
+                    teacher_code={data?.teacher.code as number}
                     data={data?.classes as TTeacherSingleClassType[]}
                 />
             </DFetchingContainer>

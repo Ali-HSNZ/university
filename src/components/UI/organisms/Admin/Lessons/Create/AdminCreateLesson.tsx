@@ -16,7 +16,7 @@ import { createLessonMutationFn } from '@api/create-lesson'
 
 import { QueryKeys } from '@core/enums/query-keys'
 import { type TCriticalAny } from '@core/types/critical-any'
-import { type IAuthMutationFnProps } from '@core/types/data/auth'
+import { type IBaseMutationFnProps } from '@core/types/data/base-response'
 import { type TCreateLessonForm } from '@core/types/forms-schema/create-lesson-form'
 import { createLessonFormSchema } from '@core/utils/validations/create-lesson-form'
 
@@ -45,7 +45,7 @@ const AdminCreateLesson = () => {
 
     const { isPending, mutate } = useMutation({
         mutationFn: createLessonMutationFn,
-        onSuccess: (res: IAuthMutationFnProps) => {
+        onSuccess: (res: IBaseMutationFnProps) => {
             toast.success(res.message)
 
             // refetch lessens list
@@ -77,8 +77,11 @@ const AdminCreateLesson = () => {
             <section className='flex flex-col gap-6'>
                 <p>ثبت درس</p>
 
-                <form onSubmit={handleSubmit((formValue) => mutate(formValue))} className='bg-white  p-6'>
-                    <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-9'>
+                <form
+                    onSubmit={handleSubmit((formValue) => mutate(formValue))}
+                    className='bg-white flex flex-col gap-6 p-6'
+                >
+                    <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
                         <Controller
                             name='title'
                             control={control}

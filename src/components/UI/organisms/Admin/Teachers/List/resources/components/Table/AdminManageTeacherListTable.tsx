@@ -18,7 +18,7 @@ import { deleteTeacherByCodeFn } from '@api/delete-teacher-by-code'
 import { QueryKeys } from '@core/enums/query-keys'
 import { Routes } from '@core/routes'
 import { type TCriticalAny } from '@core/types/critical-any'
-import { type IAuthMutationFnProps } from '@core/types/data/auth'
+import { type IBaseMutationFnProps } from '@core/types/data/base-response'
 import { type TTeachersListFnType } from '@core/types/data/teachers-list'
 
 import { ClassAssignment, type IAdminManageTeacherListTableProps } from './resources'
@@ -39,7 +39,7 @@ const Table: FC<IAdminManageTeacherListTableProps> = ({ data }) => {
 
     const { mutate } = useMutation({
         mutationFn: (teacherCode: string) => deleteTeacherByCodeFn(teacherCode),
-        onSuccess: (res: IAuthMutationFnProps) => {
+        onSuccess: (res: IBaseMutationFnProps) => {
             toast.info(res?.message)
             queryClient.invalidateQueries({
                 queryKey: [QueryKeys.TeachersList],

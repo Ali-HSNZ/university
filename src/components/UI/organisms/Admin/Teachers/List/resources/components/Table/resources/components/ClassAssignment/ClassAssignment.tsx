@@ -14,7 +14,7 @@ import { getAssignmentClassTimeListFn } from '@api/get-assignment-class-time-lis
 
 import { QueryKeys } from '@core/enums/query-keys'
 import { type TCriticalAny } from '@core/types/critical-any'
-import { type IAuthMutationFnProps } from '@core/types/data/auth'
+import { type IBaseMutationFnProps } from '@core/types/data/base-response'
 
 import { type IClassAssignmentProps } from './resources'
 
@@ -92,7 +92,7 @@ const ClassAssignment: FC<IClassAssignmentProps> = ({ close, rowDetail }) => {
 
     const { isPending, mutate } = useMutation({
         mutationFn: assignClassToTeacherMutationFn,
-        onSuccess: (res: IAuthMutationFnProps) => {
+        onSuccess: (res: IBaseMutationFnProps) => {
             toast.success(res.message)
 
             // refetch lessens list
@@ -112,7 +112,6 @@ const ClassAssignment: FC<IClassAssignmentProps> = ({ close, rowDetail }) => {
         form.preventDefault()
         if (rowDetail) {
             const formValues = {
-                userId: rowDetail.userId,
                 user_code: rowDetail.code,
                 classId: selectedClass,
                 dayCode: selectedDay,

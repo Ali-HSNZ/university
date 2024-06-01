@@ -12,7 +12,7 @@ import { bulkCreateTeacherMutationFn } from '@api/bulk-create-teacher'
 
 import { QueryKeys } from '@core/enums/query-keys'
 import { type TCriticalAny } from '@core/types/critical-any'
-import { type IAuthMutationFnProps } from '@core/types/data/auth'
+import { type IBaseMutationFnProps } from '@core/types/data/base-response'
 
 import { type IAdminCreateTeacherUploadModalProps } from './resources'
 
@@ -23,7 +23,7 @@ const AdminCreateTeacherUploadModal: FC<IAdminCreateTeacherUploadModalProps> = (
 
     const { isPending, mutate } = useMutation({
         mutationFn: bulkCreateTeacherMutationFn,
-        onSuccess: (res: IAuthMutationFnProps) => {
+        onSuccess: (res: IBaseMutationFnProps) => {
             toast.success(res.message)
             onClose()
             setFiles([])

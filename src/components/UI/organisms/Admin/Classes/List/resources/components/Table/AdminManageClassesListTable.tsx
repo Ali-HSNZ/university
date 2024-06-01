@@ -1,20 +1,18 @@
 import { type FC } from 'react'
 import { toast } from 'react-toastify'
-import { Menu } from '@mantine/core'
+import { ActionIcon } from '@mantine/core'
 import { modals } from '@mantine/modals'
-import { IconDotsVertical, IconTrash } from '@tabler/icons-react'
+import { IconTrash } from '@tabler/icons-react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { createColumnHelper, getCoreRowModel, useReactTable } from '@tanstack/react-table'
 
 import { DTable } from '@molecules/DTable'
 
-import { DActionIcon } from '@atoms/DActionIcon'
-
 import { deleteClassByIdFn } from '@api/delete-class-by-id'
 
 import { QueryKeys } from '@core/enums/query-keys'
 import { type TCriticalAny } from '@core/types/critical-any'
-import { type IAuthMutationFnProps } from '@core/types/data/auth'
+import { type IBaseMutationFnProps } from '@core/types/data/base-response'
 import { type TClassesListFnType } from '@core/types/data/classes-list'
 
 import { type IAdminManageClassesListTableProps } from './resources'
@@ -31,7 +29,7 @@ const Table: FC<IAdminManageClassesListTableProps> = ({ data }) => {
 
     const { mutate } = useMutation({
         mutationFn: (classId: number) => deleteClassByIdFn(classId),
-        onSuccess: (res: IAuthMutationFnProps) => {
+        onSuccess: (res: IBaseMutationFnProps) => {
             toast.info(res?.message)
             queryClient.invalidateQueries({
                 queryKey: [QueryKeys.ClassesList],
@@ -87,22 +85,13 @@ const Table: FC<IAdminManageClassesListTableProps> = ({ data }) => {
             header: 'عملیات',
             cell({ cell }) {
                 return (
-                    <Menu width={200}>
-                        <Menu.Target>
-                            <DActionIcon color='dark' variant='subtle'>
-                                <IconDotsVertical />
-                            </DActionIcon>
-                        </Menu.Target>
-                        <Menu.Dropdown>
-                            <Menu.Item
-                                onClick={() => deleteClassById(cell.row.original.title, cell.row.original.id)}
-                                color='#e31102'
-                                leftSection={<IconTrash size={19} />}
-                            >
-                                حذف
-                            </Menu.Item>
-                        </Menu.Dropdown>
-                    </Menu>
+                    <ActionIcon
+                        onClick={() => deleteClassById(cell.row.original.title, cell.row.original.id)}
+                        color='red'
+                        variant='subtle'
+                    >
+                        <IconTrash size={19} />
+                    </ActionIcon>
                 )
             },
         }),
