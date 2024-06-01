@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -29,6 +30,8 @@ const AdminTeacherProfileTemplate = ({ teacherId }: { teacherId: string }) => {
         queryFn: () => getAdminTeacherProfileFn(teacherId),
     })
 
+    const router = useRouter()
+
     const {
         control,
         handleSubmit,
@@ -42,6 +45,7 @@ const AdminTeacherProfileTemplate = ({ teacherId }: { teacherId: string }) => {
         mutationFn: (values: TUpdateTeacherForm) => updateTeacherMutationFn(data?.userId || '', values),
         onSuccess: (res) => {
             toast.success(res.message)
+            router.push('/admin/teachers')
         },
         onError: (err: TCriticalAny) => {
             if (err.code === 400) {
@@ -65,8 +69,11 @@ const AdminTeacherProfileTemplate = ({ teacherId }: { teacherId: string }) => {
             </div>
 
             <DFetchingContainer isFetching={isFetching} isError={isError} isSuccess={isSuccess}>
-                <form onSubmit={handleSubmit((formValues) => mutate(formValues))} className='bg-white  p-6'>
-                    <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-9'>
+                <form
+                    onSubmit={handleSubmit((formValues) => mutate(formValues))}
+                    className='bg-white flex flex-col gap-6 p-6'
+                >
+                    <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
                         <Controller
                             name='first_name'
                             control={control}
