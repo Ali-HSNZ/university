@@ -7,7 +7,7 @@ const DField: FC<IDFieldProps> = ({ children, fieldName, fieldError, containerCl
     return (
         <div className={`w-full items-start  ${containerClassName}`}>
             {children}
-            {fieldError && (
+            {fieldError && fieldError[fieldName] && (
                 <div className='min-h-[24px] flex items-center justify-start'>
                     <ErrorMessage
                         name={fieldName}
