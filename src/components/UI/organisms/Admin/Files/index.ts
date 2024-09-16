@@ -1,6 +1,12 @@
 'use client'
 import AdminClassesFilesListTable from './Classes/List/AdminClassesFilesList'
 import AdminLessonsFilesListTable from './Lessons/List/AdminLessonsFilesList'
+import AdminPendingToAgreeFilesList from './PendingToAgree/PendingToAgree'
 import AdminTeachersFilesListTable from './Teachers/List/AdminTeachersFilesList'
 
-export { AdminTeachersFilesListTable, AdminLessonsFilesListTable, AdminClassesFilesListTable }
+export {
+    AdminTeachersFilesListTable,
+    AdminPendingToAgreeFilesList,
+    AdminLessonsFilesListTable,
+    AdminClassesFilesListTable,
+}

@@ -1,20 +1,18 @@
 import { type FC } from 'react'
 import { toast } from 'react-toastify'
-import { Menu } from '@mantine/core'
+import { ActionIcon } from '@mantine/core'
 import { modals } from '@mantine/modals'
-import { IconDotsVertical, IconTrash } from '@tabler/icons-react'
+import { IconTrash } from '@tabler/icons-react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { createColumnHelper, getCoreRowModel, useReactTable } from '@tanstack/react-table'
 
 import { DTable } from '@molecules/DTable'
 
-import { DActionIcon } from '@atoms/DActionIcon'
-
 import { deleteLessonByCodeFn } from '@api/delete-lesson-by-code'
 
 import { QueryKeys } from '@core/enums/query-keys'
 import { type TCriticalAny } from '@core/types/critical-any'
-import { type IAuthMutationFnProps } from '@core/types/data/auth'
+import { type IBaseMutationFnProps } from '@core/types/data/base-response'
 import { type TAdminLessonsListTableType } from '@core/types/table/adminLessons'
 
 import { type IAdminManageLessonsListTableProps } from './resources'
@@ -26,7 +24,7 @@ const Table: FC<IAdminManageLessonsListTableProps> = ({ data }) => {
 
     const { mutate } = useMutation({
         mutationFn: (lessonCode: string) => deleteLessonByCodeFn(lessonCode),
-        onSuccess: (res: IAuthMutationFnProps) => {
+        onSuccess: (res: IBaseMutationFnProps) => {
             toast.info(res?.message)
             queryClient.invalidateQueries({
                 queryKey: [QueryKeys.LessonsList],
@@ -40,7 +38,9 @@ const Table: FC<IAdminManageLessonsListTableProps> = ({ data }) => {
     const deleteLessonById = (code: string, title: string) => {
         modals.openConfirmModal({
             title: `حذف درس ${title}`,
-            children: <p className='text-gray-600 text-sm font-light'>پس از حذف درس، امکان بازگشت وجود ندارد.</p>,
+            children: (
+                <p className='text-gray-600 text-sm font-light'>پس از حذف درس، تمامی کلاس های مرتبط حذف خواهند شد.</p>
+            ),
             labels: { confirm: 'حذف', cancel: 'بازگشت' },
             confirmProps: { color: 'red' },
             onConfirm() {
@@ -74,22 +74,13 @@ const Table: FC<IAdminManageLessonsListTableProps> = ({ data }) => {
             header: 'عملیات',
             cell({ cell }) {
                 return (
-                    <Menu width={200}>
-                        <Menu.Target>
-                            <DActionIcon color='dark' variant='subtle'>
-                                <IconDotsVertical />
-                            </DActionIcon>
-                        </Menu.Target>
-                        <Menu.Dropdown>
-                            <Menu.Item
-                                onClick={() => deleteLessonById(cell.row.original.code, cell.row.original.title)}
-                                color='#e31102'
-                                leftSection={<IconTrash size={19} />}
-                            >
-                                حذف
-                            </Menu.Item>
-                        </Menu.Dropdown>
-                    </Menu>
+                    <ActionIcon
+                        onClick={() => deleteLessonById(cell.row.original.code, cell.row.original.title)}
+                        color='red'
+                        variant='subtle'
+                    >
+                        <IconTrash size={19} />
+                    </ActionIcon>
                 )
             },
         }),

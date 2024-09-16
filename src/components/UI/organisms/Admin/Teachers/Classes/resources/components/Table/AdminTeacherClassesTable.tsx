@@ -1,8 +1,7 @@
 import { type FC } from 'react'
 import { toast } from 'react-toastify'
-import { Menu } from '@mantine/core'
 import { modals } from '@mantine/modals'
-import { IconDotsVertical, IconTrash } from '@tabler/icons-react'
+import { IconTrash } from '@tabler/icons-react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { createColumnHelper, getCoreRowModel, useReactTable } from '@tanstack/react-table'
 
@@ -14,7 +13,7 @@ import { deleteTeacherClassByIdFn } from '@api/delete-teacher-class-by-id'
 
 import { QueryKeys } from '@core/enums/query-keys'
 import { type TCriticalAny } from '@core/types/critical-any'
-import { type IAuthMutationFnProps } from '@core/types/data/auth'
+import { type IBaseMutationFnProps } from '@core/types/data/base-response'
 import { type TTeacherSingleClassType } from '@core/types/data/teacher-classes-list'
 
 import { type IAdminTeacherClassesTableProps } from './resources'
@@ -31,7 +30,7 @@ const Table: FC<IAdminTeacherClassesTableProps> = ({ data, teacher_code }) => {
 
     const { mutate } = useMutation({
         mutationFn: (classId: number) => deleteTeacherClassByIdFn(teacher_code, classId),
-        onSuccess: (res: IAuthMutationFnProps) => {
+        onSuccess: (res: IBaseMutationFnProps) => {
             toast.info(res?.message)
             queryClient.invalidateQueries({
                 queryKey: [QueryKeys.AdminTeacherClassesList],
@@ -88,22 +87,13 @@ const Table: FC<IAdminTeacherClassesTableProps> = ({ data, teacher_code }) => {
             header: 'عملیات',
             cell({ cell }) {
                 return (
-                    <Menu width={200}>
-                        <Menu.Target>
-                            <DActionIcon color='dark' variant='subtle'>
-                                <IconDotsVertical />
-                            </DActionIcon>
-                        </Menu.Target>
-                        <Menu.Dropdown>
-                            <Menu.Item
-                                onClick={() => deleteTeacherLesson(cell.row.original.id, cell.row.original.title)}
-                                color='#e31102'
-                                leftSection={<IconTrash size={19} />}
-                            >
-                                حذف
-                            </Menu.Item>
-                        </Menu.Dropdown>
-                    </Menu>
+                    <DActionIcon
+                        onClick={() => deleteTeacherLesson(cell.row.original.id, cell.row.original.title)}
+                        color='red'
+                        variant='subtle'
+                    >
+                        <IconTrash size={19} />
+                    </DActionIcon>
                 )
             },
         }),
