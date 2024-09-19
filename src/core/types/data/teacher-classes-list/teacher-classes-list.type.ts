@@ -15,7 +15,7 @@ type TTeacherClassesListType = {
     teacher: {
         first_name: string
         last_name: string
-        teacher_code: number
+        code: number
     }
 }
 

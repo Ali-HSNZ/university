@@ -1,11 +1,10 @@
 type TAdminTeacherFilesListTableType = {
     index?: number
     first_name: string
+    user_code: string
+    fileId: number
     last_name: string
-    user_type: number
-    section: string
     file_path: string
-    is_show: number
     date: string
     operators?: unknown
 }

@@ -5,7 +5,6 @@ import { baseApiUrl } from '@api/base-api-url'
 import { Http } from '@core/services/interceptor'
 
 type TAssignClassToTeacherMutationFnType = {
-    userId: number
     user_code: string
     classId: string | null | undefined
     dayCode: string | null | undefined
